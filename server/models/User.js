@@ -23,12 +23,34 @@ const userSchema = new Schema(
       required: [true, 'Please enter a password'],
       minlength: 8,
     },
-    // friends: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'user',
-    //   },
-    // ],
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+      },
+    ],
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+      },
+    ],
+    // 🌟 NOTE represents the final gif
+    timelapse_gif: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'timelapse',
+      },
+    ],
+    // 🌟 NOTE represents arrays of images that are uploaded
+    // 🌟 Assumption: For the MVP, a user can only work on one timelapse at a time
+    // images get posted, and saved to this array under user model
+    images: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'image',
+      },
+    ],
   },
   {
     toJSON: {
@@ -40,12 +62,12 @@ const userSchema = new Schema(
 )
 
 // Bcrypt encryption
-UserSchema.pre('save', async function () {
+userSchema.pre('save', async function () {
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password, salt)
 })
 
-UserSchema.methods.comparePassword = async function (canditatePassword) {
+userSchema.methods.comparePassword = async function (canditatePassword) {
   const isMatch = await bcrypt.compare(canditatePassword, this.password)
   return isMatch
 }
@@ -54,5 +76,9 @@ const User = model('user', userSchema)
 
 module.exports = User
 
-// NOTE:
+// NOTES:
+// Regarding timelapses -> Waiting to see how images get implemeted before finalizing
 // Roughing in potential future additions to the models. Leaving commenetd out for now, until idea is fully fleshed out
+
+// timelapses -> Referencing the COMPLETED GIF
+// Images -> Referecning the images users are uploading
