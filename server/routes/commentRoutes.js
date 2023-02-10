@@ -6,7 +6,7 @@ const {
   deleteComment,
 } = require('../controllers/commentControllers')
 
-router.route('/timelapse/:id/comments').post(createComment)
-router.route('/timelapse/:id/comments/:cid').delete(deleteComment)
+router.route('/:id/comments').post(createComment)
+router.route('/:id/comments/:cid').delete(deleteComment)
 
 module.exports = router
