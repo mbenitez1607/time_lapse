@@ -1,9 +1,16 @@
-// import Header from './Header';
-// import Footer from './Footer';
+import Header from './Header';
+import Footer from './Footer';
+
+import "../styles/main.css"
 
 const PageContainer = () => 
-<div className="d-flex justify-content-center">
-    hello testing~
-</div>
+    <div class="pageContainer">
+        <Header />
+        <div class="d-flex align-items-center justify-content-center text-center">Testing!</div>
+        <Footer />
+    </div>
+
+
+
 
 export default PageContainer;

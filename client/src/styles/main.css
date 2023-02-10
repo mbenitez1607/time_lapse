@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Amatic SC', cursive;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 18px;
+}
+
+.pageContainer{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.myBtn{
+    padding: 12px 18px;
+    background-color: #01cb88;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 18px;
+}
+
+.myBtn:hover{
+    background-color: #50a060;
+}
+
+.mainColor{
+    color:#01cb88;
+}
+
+.icon:hover{
+    color:#50a060;
+}
+
