@@ -9,7 +9,7 @@ const {
   deleteUser,
   followUser,
   unfollowUser,
-} = require('../controllers/users')
+} = require('../controllers/userControllers')
 
 router.route('/').post(createUser).get(getAllUsers)
 router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
