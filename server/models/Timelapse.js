@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose')
+const CommentSchema = require('./Comment')
+const moment = require('moment')
 
 const TimelapseSchema = new Schema({
   name: {
@@ -19,8 +21,7 @@ const TimelapseSchema = new Schema({
   //   type: ???
   // },
 
-  // NOTE this can be used for other user interactions afterwards
-  // reactions: {}
+  comments: [CommentSchema],
 })
 
 const Timelapse = model('timelapse', TimelapseSchema)
