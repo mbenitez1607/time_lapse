@@ -1,4 +1,5 @@
-const { Timelapse } = require('../models/Timelapse')
+const { Timelapse, Comment } = require('../models')
+
 
 // /api/timelapse/:id/comments
 const createComment = async (req, res) => {
@@ -16,7 +17,8 @@ const createComment = async (req, res) => {
         .json({ msg: 'Can not find the timelapse matching this ID' })
     }
 
-    res.status(201).json({ msg: 'comment created!', newComment })
+    res.status(201).json({ msg: 'success', newComment })
+
   } catch (error) {
     res.status(500).json(error)
   }
