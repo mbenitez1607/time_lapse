@@ -1,0 +1,47 @@
+.masonryBox{
+    margin: auto;
+    width: 90%;
+}
+
+.masonry {
+    column-count: 5;
+    column-gap: 8px;
+  }
+  
+.item {
+    padding: 16px;
+    position: relative;
+}
+
+.item:hover{
+    transition: 0.5s;
+    transform: scale(1.25);
+    z-index: 5;
+    cursor: pointer;
+}
+  
+.item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width:1200px) {
+    .masonry{
+        column-count: 4;
+    }
+}
+
+@media (max-width:850px) {
+    .masonry{
+        column-count: 3;
+    }
+}
+
+@media (max-width:600px) {
+    .masonry{
+        column-count: 2;
+    }
+}
+
