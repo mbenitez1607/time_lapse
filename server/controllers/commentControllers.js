@@ -1,5 +1,6 @@
 const { Timelapse, Comment } = require('../models')
 
+
 // /api/timelapse/:id/comments
 const createComment = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ const createComment = async (req, res) => {
     }
 
     res.status(201).json({ msg: 'success', newComment })
+
   } catch (error) {
     res.status(500).json(error)
   }
