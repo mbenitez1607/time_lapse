@@ -11,7 +11,4 @@ const PageContainer = () =>
         <Footer />
     </div>
 
-
-
-
 export default PageContainer;
