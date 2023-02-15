@@ -1,0 +1,115 @@
+.signLoginBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer {
+    position: relative;
+    display: flex;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.div-description {
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px 0 0 5px;
+    transform: translateZ(-1px);
+}
+.div-description:nth-last-child(1) {
+    border-radius: 0 5px 5px 0;
+}
+.div-description img {
+    width: 75%;
+    margin-bottom: 15px;
+}
+.div-description span {
+    font-size: 12px;
+    color: #555;
+}
+
+.div-form {
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    left: 0;
+    transition: .5s;
+    transform-origin: right;
+}
+.div-form .form-login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #0ee9a2 0%, #06b97d 200%);
+    border-radius: 5px 0 0 5px;
+}
+.div-form .form-register {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #0ee9a2 -100%, #06b97d 100%);
+    border-radius: 0 5px 5px 0;
+    transform: rotateY(180deg);
+}
+.div-form form.disappear {
+    display: none;
+}
+
+.div-form h1 {
+    margin: 50px 0 25px 0;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 5px;
+}
+.div-form input {
+    background-color: transparent;
+    width: 70%;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 5px 0;
+    margin: 8px 0;
+    text-indent: 5px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.div-form input::placeholder {
+    color: #fff;
+}
+.div-form button[type="submit"] {
+    margin: 8px 0;
+    width: 70%;
+    border: none;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: .4s;
+}
+.div-form button[type="submit"]:hover {
+    letter-spacing: 3px;
+    background-color: #fff;
+    color: #01cb88;
+}
+
+.div-form .control {
+    color: #fff;
+    margin: 5px;
+    font-size: 13px;
+}
+.div-form .control a {
+    color: #fff;
+    margin: 0 5px;
+    letter-spacing: 1px;
+}
+.div-form .control a:hover {
+    color: #000;
+}
