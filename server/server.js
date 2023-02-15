@@ -1,12 +1,18 @@
+require('dotenv').config()
 const express = require('express')
 const db = require('./config/connection')
 const routes = require('./routes')
+
+
+// Cron will just run as long as server is open
+// const cron = require('./controllers/sendEmail')
 
 
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fileRoutes = require('./routes/file-upload-routes');
+
 
 const PORT = process.env.PORT || 3001
 const app = express()
