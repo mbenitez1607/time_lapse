@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const db = require('./config/connection')
 const routes = require('./routes')
-
+import { Gif } from 'make-a-gif';
 
 // Cron will just run as long as server is open
 // const cron = require('./controllers/sendEmail')

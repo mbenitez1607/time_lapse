@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const singleFileSchema = new Schema({
+const SingleFileSchema = new Schema({
     fileName: {
         type: String,
         required: true
@@ -21,4 +21,4 @@ const singleFileSchema = new Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model('SingleFile', singleFileSchema);
+module.exports = mongoose.model('SingleFile', SingleFileSchema);

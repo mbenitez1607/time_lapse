@@ -48,7 +48,7 @@ const userSchema = new Schema(
     images: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'image',
+        ref: 'singlefile',
       },
     ],
   },

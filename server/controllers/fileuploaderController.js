@@ -1,6 +1,5 @@
 
-const SingleFile = require('../models/singlefile');
-const MultipleFile = require('../models/multiplefile');
+const SingleFile = require('../models/Singlefile');
 
 const singleFileUpload = async (req, res, next) => {
     try{
@@ -16,28 +15,22 @@ const singleFileUpload = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const multipleFileUpload = async (req, res, next) => {
+
+const deleteFile = async (req, res) => {
     try{
-        let filesArray = [];
-        req.files.forEach(element => {
-            const file = {
-                fileName: element.originalname,
-                filePath: element.path,
-                fileType: element.mimetype,
-                fileSize: fileSizeFormatter(element.size, 2)
-            }
-            filesArray.push(file);
-        });
-        const multipleFiles = new MultipleFile({
-            title: req.body.title,
-            files: filesArray 
-        });
-        await multipleFiles.save();
-        res.status(201).send('Files Uploaded Successfully');
+        const { id } = req.params
+        const deletedFile = await SingleFile.findOneAndDelete({ _id: id })
+
+        if (!deletedFile) {
+            return res.status(404).json({ msg: `No file with id: ${id}` })
+          }
+          res.status(200).json({ deletedFile })
+
     }catch(error) {
         res.status(400).send(error.message);
     }
 }
+
 
 const getallSingleFiles = async (req, res, next) => {
     try{
@@ -47,14 +40,7 @@ const getallSingleFiles = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const getallMultipleFiles = async (req, res, next) => {
-    try{
-        const files = await MultipleFile.find();
-        res.status(200).send(files);
-    }catch(error) {
-        res.status(400).send(error.message);
-    }
-}
+
 
 const fileSizeFormatter = (bytes, decimal) => {
     if(bytes === 0){
@@ -69,7 +55,6 @@ const fileSizeFormatter = (bytes, decimal) => {
 
 module.exports = {
     singleFileUpload,
-    multipleFileUpload,
     getallSingleFiles,
-    getallMultipleFiles
+    deleteFile
 }
