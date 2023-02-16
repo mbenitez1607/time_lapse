@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose')
-const bcrypt = require('bcrypt')
+import { Schema, model } from 'mongoose'
+import bcrypt from 'bcrypt'
 
 const userSchema = new Schema(
   {
@@ -74,7 +74,7 @@ userSchema.methods.comparePassword = async function (canditatePassword) {
 
 const User = model('user', userSchema)
 
-module.exports = User
+export default User
 
 // NOTES:
 // Regarding timelapses -> Waiting to see how images get implemeted before finalizing

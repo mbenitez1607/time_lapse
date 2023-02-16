@@ -1,8 +1,8 @@
 
-const SingleFile = require('../models/singlefile');
-const MultipleFile = require('../models/multiplefile');
+import SingleFile from '../models/singlefile.js';
+import MultipleFile from '../models/multiplefile.js';
 
-const singleFileUpload = async (req, res, next) => {
+export const singleFileUpload = async (req, res, next) => {
     try{
         const file = new SingleFile({
             fileName: req.file.originalname,
@@ -16,7 +16,7 @@ const singleFileUpload = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const multipleFileUpload = async (req, res, next) => {
+export const multipleFileUpload = async (req, res, next) => {
     try{
         let filesArray = [];
         req.files.forEach(element => {
@@ -39,7 +39,7 @@ const multipleFileUpload = async (req, res, next) => {
     }
 }
 
-const getallSingleFiles = async (req, res, next) => {
+export const getallSingleFiles = async (req, res, next) => {
     try{
         const files = await SingleFile.find();
         res.status(200).send(files);
@@ -47,7 +47,7 @@ const getallSingleFiles = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const getallMultipleFiles = async (req, res, next) => {
+export const getallMultipleFiles = async (req, res, next) => {
     try{
         const files = await MultipleFile.find();
         res.status(200).send(files);
@@ -56,7 +56,7 @@ const getallMultipleFiles = async (req, res, next) => {
     }
 }
 
-const fileSizeFormatter = (bytes, decimal) => {
+export const fileSizeFormatter = (bytes, decimal) => {
     if(bytes === 0){
         return '0 Bytes';
     }
@@ -67,9 +67,3 @@ const fileSizeFormatter = (bytes, decimal) => {
 
 }
 
-module.exports = {
-    singleFileUpload,
-    multipleFileUpload,
-    getallSingleFiles,
-    getallMultipleFiles
-}

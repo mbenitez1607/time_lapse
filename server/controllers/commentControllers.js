@@ -1,8 +1,10 @@
-const { Timelapse, Comment } = require('../models')
+import  Comment from '../models/Comment.js'
+import  Timelapse from '../models/Timelapse.js'
+
 
 
 // /api/timelapse/:id/comments
-const createComment = async (req, res) => {
+export const createComment = async (req, res) => {
   try {
     const { id } = req.params
     const newComment = await Timelapse.findOneAndUpdate(
@@ -25,7 +27,7 @@ const createComment = async (req, res) => {
 }
 
 // /api/timelapse/:id/comments/:cid
-const deleteComment = async (req, res) => {
+export const deleteComment = async (req, res) => {
   try {
     const { id, cid } = req.params
     const deletingComment = await Timelapse.findOneAndUpdate(
@@ -45,5 +47,3 @@ const deleteComment = async (req, res) => {
     res.status(500).json(error)
   }
 }
-
-module.exports = { createComment, deleteComment }

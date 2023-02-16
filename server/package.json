@@ -1,7 +1,12 @@
 {
   "name": "timelapse",
   "version": "1.0.0",
+
+  "description": "",
+  "type": "module",
+
   "description": "Timelapse app to keep a record of changing people or environments",
+
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

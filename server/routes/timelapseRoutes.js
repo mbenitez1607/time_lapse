@@ -1,19 +1,19 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
-const {
+import {
   getAllTimelapses,
-  getTimelapse,
+  getSingleTimelapse,
   createTimelapse,
   updateTimelapse,
   deleteTimelapse,
-} = require('../controllers/timelapseControllers')
+} from '../controllers/timelapseControllers.js'
 
 router.route('/').post(createTimelapse).get(getAllTimelapses)
 router
   .route('/:id')
-  .get(getTimelapse)
+  .get(getSingleTimelapse)
   .put(updateTimelapse)
   .delete(deleteTimelapse)
 
-module.exports = router
+export default router

@@ -1,8 +1,8 @@
 
-const express = require('express');
-const {upload} = require('../helpers/filehelper');
-const {singleFileUpload, multipleFileUpload,
-     getallSingleFiles, getallMultipleFiles} = require('../controllers/fileuploaderController');
+import express from 'express';
+import upload from '../helpers/filehelper.js';
+import {singleFileUpload, multipleFileUpload,
+     getallSingleFiles, getallMultipleFiles} from '../controllers/fileuploaderController.js';
 const router = express.Router();
 
 
@@ -12,6 +12,4 @@ router.get('/getSingleFiles', getallSingleFiles);
 router.get('/getMultipleFiles', getallMultipleFiles);
 
 
-module.exports = {
-    routes: router
-}
+export default router
