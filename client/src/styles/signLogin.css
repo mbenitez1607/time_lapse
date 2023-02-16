@@ -113,3 +113,17 @@
 .div-form .control a:hover {
     color: #000;
 }
+
+
+@media only screen and (max-width: 600px){
+
+    .div-description{
+        display: none;
+    }
+
+    .div-form{
+        position: static;
+        transform-origin: center;
+    }
+
+}

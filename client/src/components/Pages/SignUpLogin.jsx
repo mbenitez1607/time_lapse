@@ -39,21 +39,21 @@ const signLogin = () =>
 </div>  
 
 
-    const toRegister = () => {
-        const formContainer = document.querySelector('.div-form')
-        const form = document.querySelectorAll('.div-form form')
-        form[0].classList.add('disappear')
-        form[1].classList.remove('disappear')
-        formContainer.style.transform = 'rotateY(180deg)'
-    }
+const toRegister = () => {
+    const formContainer = document.querySelector('.div-form')
+    const form = document.querySelectorAll('.div-form form')
+    form[0].classList.add('disappear')
+    form[1].classList.remove('disappear')
+    formContainer.style.transform = 'rotateY(180deg)'
+}
 
-    const toLogin = () => {
-        const formContainer = document.querySelector('.div-form')
-        const form = document.querySelectorAll('.div-form form')
-        form[1].classList.add('disappear')
-        form[0].classList.remove('disappear')
-        formContainer.style.transform = 'none'
-    }
+const toLogin = () => {
+    const formContainer = document.querySelector('.div-form')
+    const form = document.querySelectorAll('.div-form form')
+    form[1].classList.add('disappear')
+    form[0].classList.remove('disappear')
+    formContainer.style.transform = 'none'
+}
 
 
 
