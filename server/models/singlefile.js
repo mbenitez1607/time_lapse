@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -18,7 +18,12 @@ const singleFileSchema = new Schema({
     fileSize: {
         type: String,
         required: true
+    },
+
+    fileData:{
+        type: Buffer,
+        required:true
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model('SingleFile', singleFileSchema);
+export default mongoose.model('SingleFile', singleFileSchema);

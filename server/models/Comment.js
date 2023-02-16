@@ -1,5 +1,5 @@
-const { Schema, Types } = require('mongoose')
-const moment = require('moment')
+import { Schema, Types } from 'mongoose'
+import moment from 'moment'
 
 const CommentSchema = new Schema(
   {
@@ -36,4 +36,4 @@ const CommentSchema = new Schema(
   }
 )
 
-module.exports = CommentSchema
+export default CommentSchema
