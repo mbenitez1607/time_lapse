@@ -1,12 +1,12 @@
-const express = require('express')
+import express from 'express'
 const router = express.Router()
 
-const {
+import {
   createComment,
   deleteComment,
-} = require('../controllers/commentControllers')
+} from '../controllers/commentControllers.js'
 
 router.route('/:id/comments').post(createComment)
 router.route('/:id/comments/:cid').delete(deleteComment)
 
-module.exports = router
+export default router

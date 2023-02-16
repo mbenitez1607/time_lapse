@@ -1,6 +1,6 @@
-const User = require('../models/User')
+import User from '../models/User.js';
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const usersData = await User.find({})
     res.status(200).json({ data: usersData })
@@ -9,7 +9,7 @@ const getAllUsers = async (req, res) => {
   }
 }
 
-const getUser = async (req, res) => {
+export const getUser = async (req, res) => {
   try {
     const { id } = req.params
     const userData = await User.findOne({ _id: id }).populate(
@@ -26,7 +26,7 @@ const getUser = async (req, res) => {
   }
 }
 
-const createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     const newUser = await User.create(req.body)
     res.status(201).json({ msg: 'user created', newUser })
@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
   }
 }
 
-const updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   try {
     const { id } = req.params
     const updatedUser = await User.findOneAndUpdate({ _id: id }, req.body, {
@@ -49,7 +49,7 @@ const updateUser = async (req, res) => {
   }
 }
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params
     const deletedUser = await User.findOneAndDelete({ _id: id })
@@ -65,7 +65,7 @@ const deleteUser = async (req, res) => {
 }
 
 // /api/users/:id/follow/:fid
-const followUser = async (req, res) => {
+export const followUser = async (req, res) => {
   try {
     // id is of current logged in user
     // fid (follow ID) of the user we want to follow
@@ -93,7 +93,7 @@ const followUser = async (req, res) => {
   }
 }
 
-const unfollowUser = async (req, res) => {
+export const unfollowUser = async (req, res) => {
   try {
     const { id, fid } = req.params
 
@@ -119,12 +119,3 @@ const unfollowUser = async (req, res) => {
   }
 }
 
-module.exports = {
-  getAllUsers,
-  getUser,
-  createUser,
-  updateUser,
-  deleteUser,
-  followUser,
-  unfollowUser,
-}

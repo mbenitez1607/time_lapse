@@ -13,9 +13,10 @@
  # * * * * * *
 
 */
-require('dotenv').config()
-const cron = require('node-cron')
-const nodemailer = require('nodemailer')
+import * as dotenv from 'dotenv';
+dotenv.config()
+import cron from 'node-cron';
+import nodemailer from 'nodemailer'
 
 const sendEmail = async () => {
   // create the transport object

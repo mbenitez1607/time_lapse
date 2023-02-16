@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose')
-const CommentSchema = require('./Comment')
-const moment = require('moment')
+import { Schema, model } from 'mongoose';
+import CommentSchema from './Comment.js';
+import moment from 'moment'
 
 const TimelapseSchema = new Schema({
   name: {
@@ -26,4 +26,4 @@ const TimelapseSchema = new Schema({
 
 const Timelapse = model('timelapse', TimelapseSchema)
 
-module.exports = Timelapse
+export default Timelapse

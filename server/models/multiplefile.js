@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -10,4 +10,4 @@ const mulitipleFileSchema = new Schema({
     files: [Object]
 }, {timestamps: true});
 
-module.exports = mongoose.model('MultipleFile', mulitipleFileSchema);
+export default mongoose.model('MultipleFile', mulitipleFileSchema);
