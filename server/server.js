@@ -3,6 +3,8 @@ const express = require('express')
 const db = require('./config/connection')
 const routes = require('./routes')
 
+// auth middleware to filter, and authorize or deny requests
+const authMiddleware = require("./auth-middleware");
 
 // Cron will just run as long as server is open
 // const cron = require('./controllers/sendEmail')
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 3001
 const app = express()
 app.use(cors());
 
+app.use("/", authMiddleware);
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
