@@ -1,21 +1,22 @@
 {
   "name": "timelapse",
   "version": "1.0.0",
-  "description": "",
+  "description": "Timelapse app to keep a record of changing people or environments",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon",
     "seed": "node seeders/seed.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["MERN, single-page application"],
+  "author": "@Jon-Ledo, @Samdemarco, @Kay-Annn, @Hpyorange, @mbenitez1607",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "firebase-admin": "^11.5.0",
     "make-a-gif": "^4.1.2",
     "moment": "^2.29.4",
     "mongodb": "^5.0.1",
