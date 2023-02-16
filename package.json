@@ -1,7 +1,7 @@
 {
   "name": "time_lapse",
   "version": "1.0.0",
-  "description": "",
+  "description": "Timelapse app to keep a record of changing people or environments",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
@@ -10,9 +10,9 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["MERN, single-page application"],
+  "author": "@Jon-Ledo, @Samdemarco, @Kay-Annn, @Hpyorange, @mbenitez1607",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.6.0"
   }
