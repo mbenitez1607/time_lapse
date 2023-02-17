@@ -1,10 +1,11 @@
 
 import SingleFile from '../models/Singlefile.js';
+import { Buffer } from 'node:buffer';
 
 export const singleFileUpload = async (req, res, next) => {
     try{
         const file = new SingleFile({
-            fileName: req.file.originalname,
+            fileName: req.file.filename,
             filePath: req.file.path,
             fileType: req.file.mimetype,
             fileSize: fileSizeFormatter(req.file.size, 2) // 0.00
