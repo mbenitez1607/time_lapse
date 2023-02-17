@@ -64,8 +64,15 @@
     display: none;
 }
 
-.div-form h1 {
+.form-login h1{
     margin: 50px 0 25px 0;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 5px;
+}
+
+.form-register h1 {
+    margin: 20px 0 10px 0;
     text-transform: uppercase;
     color: #fff;
     letter-spacing: 5px;

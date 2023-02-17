@@ -7,7 +7,7 @@ const Footer = () =>
 <footer className="d-flex flex-wrap justify-content-around align-items-center row">
 
     <div className="col-md-4 d-flex align-items-center text-center">
-        <span className="mb-3 mb-md-0 mainColor fs-5">© 2023 Timelapse, Inc All rights reserved.</span>
+        <span className="mb-3 mb-md-0 mainColor fs-5">© 2023 Time-lapse, Inc All rights reserved.</span>
     </div>
 
     <ul className="nav col-md-4 justify-content-center justify-content-md-end list-unstyled d-flex">
