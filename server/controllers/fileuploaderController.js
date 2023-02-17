@@ -1,50 +1,59 @@
 
 import SingleFile from '../models/Singlefile.js';
+import User from '../models/User.js'
 import { Buffer } from 'node:buffer';
 
 export const singleFileUpload = async (req, res, next) => {
-    try{
+    try {
         const file = new SingleFile({
             fileName: req.file.filename,
             filePath: req.file.path,
             fileType: req.file.mimetype,
-            fileSize: fileSizeFormatter(req.file.size, 2) // 0.00
+            fileSize: fileSizeFormatter(req.file.size, 2),// 0.00
+            fileUser: '63ef0f84c72473760d654405'
         });
+
         await file.save();
+        await User.findOneAndUpdate(
+            { _id: '63ef0f84c72473760d654405' },
+            { $addToSet: { images: file._id } },
+            { new: true }
+        );
+
         res.status(201).send('File Uploaded Successfully');
-    }catch(error) {
+    } catch (error) {
         res.status(400).send(error.message);
     }
 }
 
 export const deleteFile = async (req, res) => {
-    try{
+    try {
         const { id } = req.params
         const deletedFile = await SingleFile.findOneAndDelete({ _id: id })
 
         if (!deletedFile) {
             return res.status(404).json({ msg: `No file with id: ${id}` })
-          }
-          res.status(200).json({ deletedFile })
+        }
+        res.status(200).json({ deletedFile })
 
-    }catch(error) {
+    } catch (error) {
         res.status(400).send(error.message);
     }
 }
 
 
 export const getallSingleFiles = async (req, res, next) => {
-    try{
+    try {
         const files = await SingleFile.find();
         res.status(200).send(files);
-    }catch(error) {
+    } catch (error) {
         res.status(400).send(error.message);
     }
 }
 
 
 export const fileSizeFormatter = (bytes, decimal) => {
-    if(bytes === 0){
+    if (bytes === 0) {
         return '0 Bytes';
     }
     const dm = decimal || 2;

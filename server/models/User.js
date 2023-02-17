@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Types} from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const userSchema = new Schema(
@@ -26,22 +26,33 @@ const userSchema = new Schema(
     followers: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'User',
       },
     ],
     following: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'User',
       },
     ],
     // 🌟 NOTE represents the final gif
     timelapse_gif: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'timelapse',
+        ref: 'Timelapse',
       },
     ],
+
+    // 🌟 NOTE represents arrays of images that are uploaded
+    // 🌟 Assumption: For the MVP, a user can only work on one timelapse at a time
+    // images get posted, and saved to this array under user model
+    images: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Singlefile',
+      },
+    ],
+
   },
   {
     toJSON: {
