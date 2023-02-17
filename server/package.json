@@ -1,19 +1,17 @@
 {
   "name": "timelapse",
   "version": "1.0.0",
-
-  "description": "",
-  "type": "module",
-
   "description": "Timelapse app to keep a record of changing people or environments",
-
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon",
     "seed": "node seeders/seed.js"
   },
-  "keywords": ["MERN, single-page application"],
+  "keywords": [
+    "MERN, single-page application"
+  ],
   "author": "@Jon-Ledo, @Samdemarco, @Kay-Annn, @Hpyorange, @mbenitez1607",
   "license": "MIT",
   "dependencies": {
@@ -28,7 +26,8 @@
     "mongoose": "^6.9.1",
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.2",
-    "nodemailer": "^6.9.1"
+    "nodemailer": "^6.9.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
