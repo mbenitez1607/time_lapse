@@ -13,6 +13,7 @@ const PageContainer = () =>
             <Routes>
                 <Route path= "/" element={<LandingPage />} />
                 <Route path= "/login" element={<SignPage />} />
+                <Route path="/wizard" element={<Wizard />}/>
             </Routes>
         <Footer />
     </div>
