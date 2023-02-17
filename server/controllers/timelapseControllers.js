@@ -1,4 +1,5 @@
 import Timelapse from '../models/Timelapse.js';
+import User from '../models/User.js';
 import { Gif } from 'make-a-gif';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
@@ -6,6 +7,7 @@ import fs from 'fs/promises';
 import * as fss from 'fs';
 import { Buffer } from 'node:buffer';
 import fetch from 'node-fetch';
+import Singlefile from '../models/Singlefile.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -40,32 +42,35 @@ export const getSingleTimelapse = async (req, res) => {
 export const createTimelapse = async (req, res) => {
 
   try {
-    //Stimulating a return of images from database
-    const file1 = fss.readFileSync('./winningsslogo.png')
-    const file2 = fss.readFileSync('./portfoliopic.png')
-    const base64String1 = Buffer.from(file1)
-    const base64String2 = Buffer.from(file2)
+    //using a hardcoded user for testing
+    const user = await User.findOne({ _id: '63ef0f84c72473760d654405' })
+    const userImages = await Singlefile.find({ _id: { $in: user.images } });
+
+    const fileNames = userImages.map(userImage => {
+      return userImage.fileName
+    })
+
+    const generateBuffer = fileNames.map(fileName => {
+      const file = fss.readFileSync(`./uploads/${fileName}`)
+      return {
+        src: Buffer.from(file)
+      }
+    })
 
     //We instance the class Gif and give the proportions of width 500 and height 500
-    const myGif = new Gif(200, 300)
-    //We set 3 images that will be 3 frames
-    await myGif.setFrames([
-      {
-        src: base64String1
-      },
-      {
-        src: base64String2
-      }
-    ])
+    const myGif = new Gif(500, 500)
+
+    await myGif.setFrames(generateBuffer)
 
     //Render the image, it will return a Buffer or it will give an error if anything goes wrong
     const Render = await myGif.encode()
 
     //Writes the gif in this folder
-    await fs.writeFile(join(__dirname, 'make-another-gif.gif'), Render)
+    await fs.writeFile(join(__dirname, '../gif/make-a-gif.gif'), Render)
 
     //const newTimelapse = await Timelapse.create(req.body)
-    res.status(200).json({ msg: 'timelapse created' })
+    res.sendFile(join(__dirname, '../gif/make-a-gif.gif'));
+
   } catch (error) {
     console.log(error)
     res.status(500).json({ msg: error })
@@ -73,8 +78,6 @@ export const createTimelapse = async (req, res) => {
 }
 
 
-
-// likely to edit the description or name
 export const updateTimelapse = async (req, res) => {
   try {
     const { id } = req.params

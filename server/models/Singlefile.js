@@ -18,7 +18,13 @@ const SingleFileSchema = new Schema({
     fileSize: {
         type: String,
         required: true
+    },
+
+    fileUser: {
+        type: String,
+        require:true
     }
-}, {timestamps: true});
+
+}, { timestamps: true });
 
 export default mongoose.model('SingleFile', SingleFileSchema);
