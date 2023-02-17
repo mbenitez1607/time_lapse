@@ -42,6 +42,7 @@ const userSchema = new Schema(
         ref: 'Timelapse',
       },
     ],
+
     // 🌟 NOTE represents arrays of images that are uploaded
     // 🌟 Assumption: For the MVP, a user can only work on one timelapse at a time
     // images get posted, and saved to this array under user model
@@ -51,6 +52,7 @@ const userSchema = new Schema(
         ref: 'Singlefile',
       },
     ],
+
   },
   {
     toJSON: {

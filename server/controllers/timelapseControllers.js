@@ -15,7 +15,7 @@ const __dirname = dirname(__filename);
 // likely for dashboard
 export const getAllTimelapses = async (req, res) => {
   try {
-    const timelapseData = await Timelapse.find({})
+    const timelapseData = await Timelapse.find({}).populate('createdBy')
     res.status(200).json({ data: timelapseData })
   } catch (error) {
     res.status(500).json({ msg: error })
@@ -40,7 +40,6 @@ export const getSingleTimelapse = async (req, res) => {
 }
 
 export const createTimelapse = async (req, res) => {
-
   try {
     //using a hardcoded user for testing
     const user = await User.findOne({ _id: '63ef0f84c72473760d654405' })
@@ -58,9 +57,11 @@ export const createTimelapse = async (req, res) => {
     })
 
     //We instance the class Gif and give the proportions of width 500 and height 500
+
     const myGif = new Gif(500, 500)
 
     await myGif.setFrames(generateBuffer)
+
 
     //Render the image, it will return a Buffer or it will give an error if anything goes wrong
     const Render = await myGif.encode()
@@ -76,7 +77,6 @@ export const createTimelapse = async (req, res) => {
     res.status(500).json({ msg: error })
   }
 }
-
 
 export const updateTimelapse = async (req, res) => {
   try {

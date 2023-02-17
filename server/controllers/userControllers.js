@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import User from '../models/User.js'
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -29,12 +29,14 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const newUser = await User.create({
+
      username: req.body.username,
      email: req.body.email,
      password: req.body.password
     });
     
     res.status(200).json({ msg: 'user created', newUser })
+
   } catch (error) {
     res.status(500).json({ msg: error })
   }
@@ -123,4 +125,3 @@ export const unfollowUser = async (req, res) => {
     res.status(500).json(error)
   }
 }
-

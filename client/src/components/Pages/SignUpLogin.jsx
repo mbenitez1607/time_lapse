@@ -52,6 +52,7 @@ const SignLogin = () => {
                 </form>
                 <form className="form-register disappear">
                     <h1>Register</h1>
+                    <input type="text" placeholder="User Name"/>
                     <input type="email" placeholder="Email"/>
                     <input type="password" placeholder="Password"/>
                     <input type="password" placeholder="Confirm Password"/>
