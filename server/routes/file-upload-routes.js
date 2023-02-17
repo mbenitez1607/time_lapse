@@ -1,15 +1,12 @@
-
 import express from 'express';
 import upload from '../helpers/filehelper.js';
-import {singleFileUpload, multipleFileUpload,
-     getallSingleFiles, getallMultipleFiles} from '../controllers/fileuploaderController.js';
+import {singleFileUpload, getallSingleFiles, deleteFile} from '../controllers/fileuploaderController.js';
 const router = express.Router();
 
 
 router.post('/singleFile', upload.single('file'), singleFileUpload);
-router.post('/multipleFiles', upload.array('files'), multipleFileUpload);
 router.get('/getSingleFiles', getallSingleFiles);
-router.get('/getMultipleFiles', getallMultipleFiles);
+router.delete('/deleteFile/:id', deleteFile);
 
 
 export default router
