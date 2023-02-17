@@ -13,9 +13,9 @@
  # * * * * * *
 
 */
-import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv'
 dotenv.config()
-import cron from 'node-cron';
+import cron from 'node-cron'
 import nodemailer from 'nodemailer'
 
 const sendEmail = async () => {
@@ -64,3 +64,21 @@ module.exports = cron
 // put into an ENV file
 // test_789564@outlook.com
 // sXi59Vv72xQixqb
+
+// // retrieve email addresses from database
+// const emails = await db.query('SELECT email FROM your_table');
+
+// // loop through emails and send email to each recipient
+// for (const { email } of emails) {
+//   // create email message using a template engine like Handlebars
+//   const message = {
+//     from: 'your-email@example.com',
+//     to: email,
+//     subject: 'Your subject here',
+//     html: templateEngine.render('path/to/your/template', { name: 'recipient name' }),
+//   };
+
+//   // send email using Nodemailer
+//   const info = await transporter.sendMail(message);
+//   console.log(`Email sent to ${email}: ${info.messageId}`);
+// }
