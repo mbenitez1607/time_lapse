@@ -12,6 +12,7 @@ const SignLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // handle form submission here
+        // need add condition for navigate to next page
         navigate('/wizard');
     };
 
