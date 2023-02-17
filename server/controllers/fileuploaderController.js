@@ -1,6 +1,5 @@
 
-import SingleFile from '../models/singlefile.js';
-import MultipleFile from '../models/multiplefile.js';
+import SingleFile from '../models/Singlefile.js';
 
 export const singleFileUpload = async (req, res, next) => {
     try{
@@ -16,28 +15,22 @@ export const singleFileUpload = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-export const multipleFileUpload = async (req, res, next) => {
+
+export const deleteFile = async (req, res) => {
     try{
-        let filesArray = [];
-        req.files.forEach(element => {
-            const file = {
-                fileName: element.originalname,
-                filePath: element.path,
-                fileType: element.mimetype,
-                fileSize: fileSizeFormatter(element.size, 2)
-            }
-            filesArray.push(file);
-        });
-        const multipleFiles = new MultipleFile({
-            title: req.body.title,
-            files: filesArray 
-        });
-        await multipleFiles.save();
-        res.status(201).send('Files Uploaded Successfully');
+        const { id } = req.params
+        const deletedFile = await SingleFile.findOneAndDelete({ _id: id })
+
+        if (!deletedFile) {
+            return res.status(404).json({ msg: `No file with id: ${id}` })
+          }
+          res.status(200).json({ deletedFile })
+
     }catch(error) {
         res.status(400).send(error.message);
     }
 }
+
 
 export const getallSingleFiles = async (req, res, next) => {
     try{
@@ -47,14 +40,7 @@ export const getallSingleFiles = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-export const getallMultipleFiles = async (req, res, next) => {
-    try{
-        const files = await MultipleFile.find();
-        res.status(200).send(files);
-    }catch(error) {
-        res.status(400).send(error.message);
-    }
-}
+
 
 export const fileSizeFormatter = (bytes, decimal) => {
     if(bytes === 0){
