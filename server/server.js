@@ -4,26 +4,25 @@ dotenv.config();
 import express from 'express';
 import db from './config/connection.js';
 import routes from './routes/index.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // auth middleware to filter, and authorize or deny requests
-const authMiddleware = require('./auth-middleware')
-
-
+//import authMiddleware from './auth-middleware'
 // Cron will just run as long as server is open
 // const cron = require('./controllers/sendEmail')
 
-
-import path from'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import fileRoutes from './routes/file-upload-routes.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const PORT = process.env.PORT || 3001
 const app = express()
 app.use(cors())
 
-app.use('/', authMiddleware)
+//app.use('/', authMiddleware)
 
 // middlewares
 app.use(cors())
@@ -34,7 +33,7 @@ app.use(express.json())
 app.use('/api', routes)
 
 app.use(bodyParser.json());
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // if we're in production, serve client/build as static assets

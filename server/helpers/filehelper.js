@@ -1,11 +1,14 @@
 import multer from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+uuidv4();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
+        const fileName = uuidv4() + '-' + file.originalname
+        cb(null,fileName);
     }
 });
 const filefilter = (req, file, cb) => {
