@@ -1,0 +1,52 @@
+.user-profile {
+	display: flex;
+	align-items: center;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	color: #01cb88;
+	transition: 0.25s ease;
+}
+
+.user-profile span:nth-child(1) {
+	display: flex;
+    font-weight: 700;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+
+}
+
+.user-profile span:nth-child(2) {
+	transition: 0.25s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-left: 1.5rem;
+	margin-right: 1rem;
+	flex-shrink: 0;
+}
+
+.user-profile img{
+    width: 50px;
+}
+
+.dropdownText ul{
+	border: #AAC7FF;
+}
+
+.dropdownText li a{
+	color: #4A90E2;
+	font-weight: 600;
+}
+
+.dropdownText li a:hover{
+	color: #3C64B1;
+}
+
+#userProfile button.disappear{
+    display: none;
+}

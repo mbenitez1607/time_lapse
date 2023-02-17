@@ -5,15 +5,15 @@ import LandingPage from './Pages/landingPage';
 import SignPage from './Pages/SignUpLogin';
 import Wizard from './Wizard'
 
-
 import "../styles/main.css"
 
 const PageContainer = () =>
     <div className="pageContainer">
         <Header />
             <Routes>
-                <Route path={"/"} element={<LandingPage />} />
-                <Route path={"/login"} element={<SignPage />} />
+                <Route path= "/" element={<LandingPage />} />
+                <Route path= "/login" element={<SignPage />} />
+                <Route path="/wizard" element={<Wizard />}/>
             </Routes>
         <Footer />
     </div>
