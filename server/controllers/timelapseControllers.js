@@ -1,19 +1,18 @@
-import Timelapse from '../models/Timelapse.js';
-import { Gif } from 'make-a-gif';
-import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
-import fs from 'fs/promises';
-import * as fss from 'fs';
-import { Buffer } from 'node:buffer';
-import fetch from 'node-fetch';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
+import Timelapse from '../models/Timelapse.js'
+import { Gif } from 'make-a-gif'
+import { fileURLToPath } from 'url'
+import { join, dirname } from 'path'
+import fs from 'fs/promises'
+import * as fss from 'fs'
+import { Buffer } from 'node:buffer'
+import fetch from 'node-fetch'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // likely for dashboard
 export const getAllTimelapses = async (req, res) => {
   try {
-    const timelapseData = await Timelapse.find({})
+    const timelapseData = await Timelapse.find({}).populate('createdBy')
     res.status(200).json({ data: timelapseData })
   } catch (error) {
     res.status(500).json({ msg: error })
@@ -38,7 +37,6 @@ export const getSingleTimelapse = async (req, res) => {
 }
 
 export const createTimelapse = async (req, res) => {
-
   try {
     //Stimulating a return of images from database
     const file1 = fss.readFileSync('./winningsslogo.png')
@@ -51,11 +49,11 @@ export const createTimelapse = async (req, res) => {
     //We set 3 images that will be 3 frames
     await myGif.setFrames([
       {
-        src: base64String1
+        src: base64String1,
       },
       {
-        src: base64String2
-      }
+        src: base64String2,
+      },
     ])
 
     //Render the image, it will return a Buffer or it will give an error if anything goes wrong
@@ -71,8 +69,6 @@ export const createTimelapse = async (req, res) => {
     res.status(500).json({ msg: error })
   }
 }
-
-
 
 // likely to edit the description or name
 export const updateTimelapse = async (req, res) => {
