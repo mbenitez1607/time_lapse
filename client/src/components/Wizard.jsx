@@ -63,7 +63,7 @@ const Wizard = () => {
 
           <div>
             <label htmlFor='description'>Description </label>
-            <div class="form-floating">
+            <div className="form-floating">
               <textarea 
                 className="form-control" 
                 id="floatingTextarea"
