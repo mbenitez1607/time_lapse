@@ -32,55 +32,60 @@ const Wizard = () => {
   }
 
   return (
-    <section className="container p-3">
+    <section className="d-flex justify-content-center">
+      <div className="wizardContainer p-3">
+
       <div className="row justify-content-center">
 
-      <form className='col-12' onSubmit={handleSubmit}>
-        <legend className="text-center mb-5">New Timelapse </legend>
-          <div className="d-flex justify-content-between">
-            <label htmlFor='timelapseName' >Your Timelapse's Name </label>
-            <input
-              className="mb-3"
-              type='text'
-              id='timelapseName'
-              name='timelapseName'
-              value={timelapseName}
-              onChange={(e) => setTimelapseName(e.target.value)}
-              />
-          </div>
-
-          <div className="d-flex justify-content-between">
-            <label htmlFor='days'>How many days? </label>
-            <input
-              className="mb-3"
-              type='number'
-              id='days'
-              name='days'
-              value={days}
-              onChange={(e) => setDays(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label htmlFor='description'>Description </label>
-            <div className="form-floating">
-              <textarea 
-                className="form-control" 
-                id="floatingTextarea"
-                style={{height: 150 + 'px'}}
-                value={description}
-                placeholder={'optional'}
-                onChange={(e) => setDescription(e.target.value)}
-                >
-              </textarea>
+        <form className='col-12' onSubmit={handleSubmit}>
+          <legend className="text-center mb-5">New Timelapse </legend>
+            <div className="d-flex justify-content-between">
+              <label htmlFor='timelapseName' >Your Timelapse's Name </label>
+              <input
+                className="mb-3"
+                type='text'
+                id='timelapseName'
+                name='timelapseName'
+                value={timelapseName}
+                onChange={(e) => setTimelapseName(e.target.value)}
+                />
             </div>
-          </div>
+
+            <div className="d-flex justify-content-between">
+              <label htmlFor='days'>How many days? </label>
+              <input
+                className="mb-3"
+                type='number'
+                id='days'
+                name='days'
+                value={days}
+                onChange={(e) => setDays(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label htmlFor='description'>Description </label>
+              <div className="form-floating">
+                <textarea 
+                  className="form-control" 
+                  id="floatingTextarea"
+                  style={{height: 150 + 'px'}}
+                  value={description}
+                  placeholder={'optional'}
+                  onChange={(e) => setDescription(e.target.value)}
+                  >
+                </textarea>
+              </div>
+            </div>
 
 
-          <button type="submit" className="myBtn mt-3">Submit</button>
-      </form>
+            <button type="submit" className="myBtn mt-3">Submit</button>
+        </form>
+        </div>
+
+
       </div>
-
+      
     </section>
   )
 }

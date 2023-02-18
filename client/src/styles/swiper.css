@@ -1,0 +1,82 @@
+.swiper {
+	width: 100%;
+	height: 400px;
+}
+
+.swiper:nth-child(1){
+    height: 300px;
+}
+  
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 220px;
+    height: 100%;
+}
+
+.swiper-pagination{
+	margin-top: 20px;
+}
+
+.myCard{
+    height: 400px;
+    display: grid;
+    grid-template-rows: 320px 60px;
+    grid-template-areas: 'img' 'text';
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.5);
+	backdrop-filter: blur(14px);
+    border-radius: 8px;
+	background: rgba(110, 138, 143, 0.2);
+    cursor: pointer;
+ }
+
+  .myCard:hover{
+    z-index: 1;
+    background-color: rgba(255, 214, 43, 0.3);
+
+}
+
+.img {
+    grid-area: img;
+    border-radius:8px 8px 0 0;
+}
+
+.text{
+    grid-area: text;
+    text-align: center;
+	margin-top: 12px;
+	font-size: 1.2rem;
+    color:#01cb88;
+}
+
+#new {
+    background: url(../img/userProject/plus.png) no-repeat;
+    background-size: contain;
+    margin: 30%;
+}
+
+#c1{
+    background: url(../img/categories/c1.jpg) no-repeat;
+    background-size: cover;
+}
+
+#c2{
+    background: url(../img/categories/c2.jpg) no-repeat;
+    background-size: cover;
+}
+
+#c3{
+    background: url(../img/categories/c3.jpg) no-repeat;
+    background-size: cover;
+}
+
+#c4{
+    background: url(../img/categories/c4.jpg) no-repeat;
+    background-size: cover;
+}
+
+#p1{
+    background: url(../img/userProject/traffic.gif) no-repeat;
+    background-size: cover;
+}
