@@ -1,6 +1,6 @@
 const User = require('./User')
 const Timelapse = require('./Timelapse')
-const Image = require('./Image')
 const Comment = require('./Comment')
+const Project = require('./Project')
 
-module.exports = { User, Timelapse, Image, Comment }
+module.exports = { User, Timelapse, Comment, Project }

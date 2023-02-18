@@ -1,4 +1,5 @@
 import Timelapse from '../models/Timelapse.js';
+import Singlefile from '../models/Singlefile.js';
 import User from '../models/User.js';
 import { Gif } from 'make-a-gif';
 import { fileURLToPath } from 'url';
@@ -7,7 +8,6 @@ import fs from 'fs/promises';
 import * as fss from 'fs';
 import { Buffer } from 'node:buffer';
 import fetch from 'node-fetch';
-import Singlefile from '../models/Singlefile.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -69,7 +69,22 @@ export const createTimelapse = async (req, res) => {
     //Writes the gif in this folder
     await fs.writeFile(join(__dirname, '../gif/make-a-gif.gif'), Render)
 
+    const timelapseFile = new Timelapse({
+      name: "New Project",
+      createdBy: "63ef0f84c72473760d654405",
+      description: "Check out my new timelapse",
+    });
+
+    timelapseFile.save()
+
+    await User.findOneAndUpdate(
+      { _id: '63ef0f84c72473760d654405' },
+      { $addToSet: { timelapse_gif: timelapseFile._id } },
+      { new: true }
+    );
+
     //const newTimelapse = await Timelapse.create(req.body)
+
     res.sendFile(join(__dirname, '../gif/make-a-gif.gif'));
 
   } catch (error) {

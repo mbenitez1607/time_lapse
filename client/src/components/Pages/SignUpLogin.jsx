@@ -106,7 +106,7 @@ const SignLogin = () => {
         setPassword('');
         setPassword2('');
         // need add condition for navigate to next page
-        navigate('/wizard');
+        navigate('/home');
     };
 
     const toRegister = () => {

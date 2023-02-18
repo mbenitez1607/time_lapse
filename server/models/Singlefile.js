@@ -20,7 +20,7 @@ const SingleFileSchema = new Schema({
         required: true
     },
 
-    fileUser: {
+    project: {
         type: String,
         require:true
     }

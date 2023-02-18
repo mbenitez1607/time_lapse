@@ -1,6 +1,6 @@
 
 import SingleFile from '../models/Singlefile.js';
-import User from '../models/User.js'
+import Project from '../models/Project.js'
 import { Buffer } from 'node:buffer';
 
 export const singleFileUpload = async (req, res, next) => {
@@ -10,12 +10,12 @@ export const singleFileUpload = async (req, res, next) => {
             filePath: req.file.path,
             fileType: req.file.mimetype,
             fileSize: fileSizeFormatter(req.file.size, 2),// 0.00
-            fileUser: '63ef0f84c72473760d654405'
+            project: '63f0f5807a4948a6d896b676'
         });
 
         await file.save();
-        await User.findOneAndUpdate(
-            { _id: '63ef0f84c72473760d654405' },
+        await Project.findOneAndUpdate(
+            { _id: '63f0f5807a4948a6d896b676' },
             { $addToSet: { images: file._id } },
             { new: true }
         );
