@@ -8,18 +8,16 @@ const TimelapseSchema = new Schema({
     required: [true, 'please provide a name for your timelapse'],
     trim: true,
   },
+
   createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'user',
+    type: String,
+    required: true
   },
+
   description: {
     type: String,
   },
-  // NOTE blank until we decide on the images format
-  // 🌟 Represents the completed gif
-  // gif: {
-  //   type: ???
-  // },
+
 
   comments: [CommentSchema],
 })

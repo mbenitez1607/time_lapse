@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { createNewTimelapse } from "../utils/API"
+import { useNavigate } from 'react-router-dom';
+import { createNewProject } from "../utils/API"
 
 import '../styles/wizard.css'
 
 const Wizard = () => {
+  const navigate = useNavigate();
   const [timelapseName, setTimelapseName] = useState('')
   const [days, setDays] = useState('')
   const [description, setDescription] = useState('')
@@ -15,21 +17,20 @@ const Wizard = () => {
 
       const data = {
         name: timelapseName,
-        createdBy: '63ee786ff41c84e9bd5a7398', // hardcoded user id 
         description,
-        // days
+        days
       }
 
-      createNewTimelapse(data)
-      // after a successfulpost, redirect to that time lapse page
+      createNewProject(data)
+      // after a successfulpost, redirect to that project page
+      
+      navigate('/home');
 
-      setTimelapseName('')
-      setDays('');
-      setDescription('')
     } else {
       console.log('empty values')
     }
   }
+
 
   return (
     <section className="d-flex justify-content-center">
@@ -38,9 +39,9 @@ const Wizard = () => {
       <div className="row justify-content-center">
 
         <form className='col-12' onSubmit={handleSubmit}>
-          <legend className="text-center mb-5">New Timelapse </legend>
+          <legend className="text-center mb-5">New Project </legend>
             <div className="d-flex justify-content-between">
-              <label htmlFor='timelapseName' >Your Timelapse's Name </label>
+              <label htmlFor='timelapseName' >Your Project's Name </label>
               <input
                 className="mb-3"
                 type='text'

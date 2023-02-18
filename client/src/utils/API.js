@@ -1,8 +1,8 @@
 const url = 'http://localhost:3001/api'
 
 // Create new timelapse project
-export const createNewTimelapse = (data, token) => {
-  return fetch(`${url}/timelapse`, {
+export const createNewProject = (data, token) => {
+  return fetch(`${url}/project`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
