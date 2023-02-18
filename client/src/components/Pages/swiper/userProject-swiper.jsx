@@ -6,6 +6,8 @@ import "swiper/css/pagination";
 
 import '../../../styles/swiper.css'
 
+import { Link } from "react-router-dom";
+
 
 export default function UserProject() {
   return (
@@ -28,18 +30,16 @@ export default function UserProject() {
       >
         <SwiperSlide >
         <a className='myCard text-decoration-none' href="#">
-            <div className="img" id="p1">
-              <img src="" alt="" />
-            </div>
+            <div className="img" id="p1"></div>
             <div className="text">Project 1: Traffic</div>
         </a>
         </SwiperSlide>
 
         <SwiperSlide>
-        <a className='myCard text-decoration-none' href="#">
+        <Link to ='/wizard' className='myCard text-decoration-none' >
             <div className="img" id="new"></div>
             <div className="text">Create New Project</div>
-        </a>
+        </Link>
         </SwiperSlide>
 
 
