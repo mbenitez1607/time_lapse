@@ -5,7 +5,7 @@ import "swiper/css";
 
 import '../../../styles/swiper.css'
 
-export default function UserProject() {
+export default function Categories() {
   return (
       <Swiper
         slidesPerView={1}

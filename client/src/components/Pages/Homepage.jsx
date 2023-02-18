@@ -1,4 +1,4 @@
-import '../../styles/homepage.css'
+import '../../styles/main.css'
 import UserProject from './swiper/userProject-swiper'
 import Categories from './swiper/Categories-swiper'
 
