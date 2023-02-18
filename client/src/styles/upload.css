@@ -1,0 +1,38 @@
+.uploadBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* This will hide the default input file button */
+input[type="file"] {
+    display: none;
+  }
+   
+  /* This will style the label element */
+  .custom-file-label {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    color: #01cb88;
+  }
+  
+.imageBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageBox img{
+    display: flex;
+    max-width: 800px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+@media only screen and (max-width: 600px){
+    .imageBox img{
+        max-width: 360px;
+    }
+}

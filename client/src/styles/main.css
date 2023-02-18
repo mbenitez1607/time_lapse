@@ -21,6 +21,7 @@
     text-align: center;
     border: none;
     border-radius: 18px;
+    cursor: pointer;
 }
 
 .myBtn:hover{
@@ -33,5 +34,11 @@
 
 .icon:hover{
     color:#50a060;
+}
+
+.title{
+    text-transform: uppercase;
+    color: #01cb88;
+    font-size: 30px;
 }
 
