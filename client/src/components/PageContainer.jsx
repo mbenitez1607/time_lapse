@@ -6,6 +6,7 @@ import SignPage from './Pages/SignUpLogin';
 import Wizard from './Wizard';
 import Homepage from './Pages/Homepage';
 import UploadImage from "./Pages/uploadPage";
+import ProjectPage from "./Pages/ProjectPage";
 
 import "../styles/main.css"
 
@@ -17,6 +18,7 @@ const PageContainer = () =>
                 <Route path= "/login" element={<SignPage />} />
                 <Route path="/wizard" element={<Wizard />}/>
                 <Route path="/home" element={<Homepage />}/>
+                <Route path="/project" element={<ProjectPage/>}/>
                 <Route path="/upload" element={<UploadImage/>}/>
             </Routes>
         <Footer />
