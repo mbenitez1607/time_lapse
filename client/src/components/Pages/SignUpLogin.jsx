@@ -59,7 +59,7 @@ const SignLogin = () => {
         // Last we checked for password2, if it's set we're registering a new user, else we're logging in an existing user
         if (password2) {
             // When signing up a new user verify the password and the confirmation match
-            if (password == password2) {
+            if (password === password2) {
                 // Sign up new user
                 createUserWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
