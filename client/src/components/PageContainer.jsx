@@ -20,7 +20,7 @@ function PageContainer() {
                 <Route path="/wizard" element={<Wizard />}/>
                 <Route path="/home" element={<Homepage />}/>
                 <Route path="/project/:id" element={<ProjectPage/>}/>
-                <Route path="/upload" element={<UploadImage/>}/>
+                <Route path="/upload/:id" element={<UploadImage/>}/>
             </Routes>
             <Footer />
         </div>
