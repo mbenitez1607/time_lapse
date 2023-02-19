@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSingleProject } from "../../utils/API";
+import { getSingleProject, generateTimelapse } from "../../utils/API";
 import '../../styles/main.css'
 import {
     useParams
@@ -42,7 +42,9 @@ export default function ProjectPage(){
                 <h2 className="title">Project Name: {project.name}</h2>
             </div>
 
-            <UploadPicture imageData={image}/>
+            <button className='myBtn mb-4' onClick={()=> generateTimelapse(id)}>Generate Your Timelapse</button>
+
+            <UploadPicture imageData={image} projectId={id}/>
 
         </div>
     )

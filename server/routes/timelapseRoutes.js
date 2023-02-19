@@ -9,7 +9,8 @@ import {
   deleteTimelapse,
 } from '../controllers/timelapseControllers.js'
 
-router.route('/').post(createTimelapse).get(getAllTimelapses)
+router.route('/').get(getAllTimelapses)
+router.route('/:id').post(createTimelapse)
 router
   .route('/:id')
   .get(getSingleTimelapse)

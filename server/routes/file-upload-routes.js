@@ -4,7 +4,7 @@ import {singleFileUpload, getallSingleFiles, deleteFile} from '../controllers/fi
 const router = express.Router();
 
 
-router.post('/singleFile', upload.single('file'), singleFileUpload);
+router.post('/singleFile/:id', upload.single('file'), singleFileUpload);
 router.get('/getSingleFiles', getallSingleFiles);
 router.delete('/deleteFile/:id', deleteFile);
 

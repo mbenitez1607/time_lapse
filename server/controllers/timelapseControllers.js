@@ -1,5 +1,6 @@
 import Timelapse from '../models/Timelapse.js';
 import Singlefile from '../models/Singlefile.js';
+import Project from '../models/Project.js';
 import User from '../models/User.js';
 import { Gif } from 'make-a-gif';
 import { fileURLToPath } from 'url';
@@ -42,11 +43,11 @@ export const getSingleTimelapse = async (req, res) => {
 export const createTimelapse = async (req, res) => {
   try {
     //using a hardcoded user for testing
-    const user = await User.findOne({ _id: '63ef0f84c72473760d654405' })
-    const userImages = await Singlefile.find({ _id: { $in: user.images } });
+    const project = await Project.findOne({ _id: req.params.id })
+    const projectImages = await Singlefile.find({ _id: { $in: project.images } });
 
-    const fileNames = userImages.map(userImage => {
-      return userImage.fileName
+    const fileNames = projectImages.map(projectImage => {
+      return projectImage.fileName
     })
 
     const generateBuffer = fileNames.map(fileName => {
@@ -77,9 +78,9 @@ export const createTimelapse = async (req, res) => {
 
     timelapseFile.save()
 
-    await User.findOneAndUpdate(
-      { _id: '63ef0f84c72473760d654405' },
-      { $addToSet: { timelapse_gif: timelapseFile._id } },
+    await Project.findOneAndUpdate(
+      { _id: '63f0f5807a4948a6d896b676' },
+      { $addToSet: { timelapse: timelapseFile._id } },
       { new: true }
     );
 
