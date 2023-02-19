@@ -80,7 +80,7 @@ const Wizard = () => {
             </div>
 
 
-            <button type="submit" className="myBtn mt-3" onClick={()=>navigate('/project')}>Submit</button>
+            <button type="submit" className="myBtn mt-3" onClick={()=>handleSubmit()}>Submit</button>
         </form>
         </div>
 

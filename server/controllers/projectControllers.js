@@ -1,6 +1,16 @@
 
 import Project from '../models/Project.js';
 import User from '../models/User.js'
+import SingleFile from '../models/Singlefile.js'
+import { fileURLToPath } from 'url';
+import { join, dirname } from 'path';
+import fs from 'fs/promises';
+import * as fss from 'fs';
+import { Buffer } from 'node:buffer';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 // import Timelapse from '../models/Timelapse.js';
 
 export const createProject = async (req, res, next) => {
@@ -43,4 +53,38 @@ export const getAllProjects = async (req, res, next) => {
 
 }
 
+export const getSingleProject = async (req, res, next) => {
+    try {
+        const filter = { _id: req.params.id }
+        const singleProject = await Project.findById(filter)
 
+        const findImages = await SingleFile.find({ _id: { $in: singleProject.images } });
+
+        const fileNames = findImages.map(singleFile => {
+            return {
+                fileName: singleFile.fileName,
+                id: singleFile._id
+            }
+        })
+
+        const generateBase64String = fileNames.map(imageFile => {
+            const file = fss.readFileSync(`./uploads/${imageFile.fileName}`, "base64")
+            return {
+                id: imageFile.id,
+                base64String: file
+            }
+        })
+
+        const data = {
+            projectData: singleProject,
+            singleProjectImages: generateBase64String
+        }
+
+
+        res.status(200).send(data)
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error.message);
+    }
+}

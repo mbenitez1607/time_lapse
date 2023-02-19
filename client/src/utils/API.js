@@ -12,6 +12,56 @@ export const createNewProject = (data, token) => {
   })
 }
 
+
+// Get all projects
+export const getAllProjects = () => {
+  return fetch(`${url}/project`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) =>  {
+      return {
+        status:200,
+        data:data
+      }
+    })
+    .catch((error) =>  {
+      return {
+        status:500,
+        error:error
+      }
+    })
+}
+
+
+// Get single projects
+export const getSingleProject = (id) => {
+  return fetch(`${url}/project/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) =>  {
+      return {
+        status:200,
+        data:data
+      }
+    })
+    .catch((error) =>  {
+      return {
+        status:500,
+        error:error
+      }
+    })
+}
+
+
+
 // Get all Timelapse projects
 export const getAllTimelapse = () => {
   return fetch(`${url}/timelapse`, {
@@ -21,8 +71,12 @@ export const getAllTimelapse = () => {
     },
   })
     .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error(error))
+    .then((data) => {
+      return data 
+    })
+    .catch((error) => {
+      return error
+    })
 }
 
 // Get a single timelapse project

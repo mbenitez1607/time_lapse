@@ -7,21 +7,24 @@ import Wizard from './Wizard';
 import Homepage from './Pages/Homepage';
 import UploadImage from "./Pages/uploadPage";
 import ProjectPage from "./Pages/ProjectPage";
-
 import "../styles/main.css"
 
-const PageContainer = () =>
-    <div className="pageContainer">
-        <Header />
+function PageContainer() {
+
+    return (
+        <div className="pageContainer">
+            <Header />
             <Routes>
                 <Route path= "/" element={<LandingPage />} />
                 <Route path= "/login" element={<SignPage />} />
                 <Route path="/wizard" element={<Wizard />}/>
                 <Route path="/home" element={<Homepage />}/>
-                <Route path="/project" element={<ProjectPage/>}/>
+                <Route path="/project/:id" element={<ProjectPage/>}/>
                 <Route path="/upload" element={<UploadImage/>}/>
             </Routes>
-        <Footer />
-    </div>
+            <Footer />
+        </div>
+    )
+}
 
 export default PageContainer;
