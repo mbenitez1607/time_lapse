@@ -103,3 +103,20 @@ export const addComment = (data, timelapseID, token) => {
     body: JSON.stringify(data),
   })
 }
+
+
+export const generateTimelapse = (id) => {
+  return fetch(`${url}/timelapse/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data 
+    })
+    .catch((error) => {
+      return error
+    })
+}

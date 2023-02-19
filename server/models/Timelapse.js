@@ -18,6 +18,10 @@ const TimelapseSchema = new Schema({
     type: String,
   },
 
+  project: {
+    type: String,
+    require:true
+},
 
   comments: [CommentSchema],
 })

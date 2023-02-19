@@ -5,17 +5,18 @@ import { Buffer } from 'node:buffer';
 
 export const singleFileUpload = async (req, res, next) => {
     try {
+
         const file = new SingleFile({
             fileName: req.file.filename,
             filePath: req.file.path,
             fileType: req.file.mimetype,
             fileSize: fileSizeFormatter(req.file.size, 2),// 0.00
-            project: '63f0f5807a4948a6d896b676'
+            project: req.params.id 
         });
 
         await file.save();
         await Project.findOneAndUpdate(
-            { _id: '63f0f5807a4948a6d896b676' },
+            { _id: req.params.id },
             { $addToSet: { images: file._id } },
             { new: true }
         );

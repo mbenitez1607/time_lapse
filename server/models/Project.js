@@ -28,6 +28,13 @@ const ProjectSchema = new Schema({
         },
     ],
 
+    timelapse: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Timelapse',
+        },
+    ]
+
 
 }, { timestamps: true });
 
