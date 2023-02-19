@@ -3,10 +3,6 @@
 	height: 400px;
 }
 
-.swiper:nth-child(1){
-    height: 300px;
-}
-  
 .swiper-slide {
     background-position: center;
     background-size: cover;
@@ -23,15 +19,17 @@
     display: grid;
     grid-template-rows: 320px 60px;
     grid-template-areas: 'img' 'text';
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.5);
-	backdrop-filter: blur(14px);
     border-radius: 8px;
-	background: rgba(110, 138, 143, 0.2);
-    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-right: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    background: rgba(95, 141, 95, 0.1);
  }
 
-  .myCard:hover{
+.myCard:hover{
     z-index: 1;
     background-color: rgba(255, 214, 43, 0.3);
 
@@ -47,6 +45,8 @@
     text-align: center;
 	margin-top: 12px;
 	font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: capitalize;
     color:#01cb88;
 }
 
