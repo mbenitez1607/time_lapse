@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Import the firebase auth object, and the functions to create/signin users
 import { auth } from "../../firebase";
@@ -125,7 +125,9 @@ const SignLogin = () => {
         formContainer.style.transform = 'none'
     }
 
-
+    useEffect(() => {
+        console.log("I am rendering signPage")
+       }, []);
     return (
         <div className="signLoginBox">
 

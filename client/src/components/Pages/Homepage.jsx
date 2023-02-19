@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import '../../styles/main.css'
 import UserProject from './swiper/userProject-swiper'
 import Categories from './swiper/Categories-swiper'
