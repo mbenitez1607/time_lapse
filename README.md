@@ -1,7 +1,7 @@
 # Project 3: TimeLapse
 
 <p align="center">
-  <img src="../client/src/img/mainImg/logo.png"  width="50%" height="50%">
+  <img src="./client/src/img/mainImg/logo.png"  width="50%" height="50%">
 </p>
 
 ## :clipboard: Table of Contents
