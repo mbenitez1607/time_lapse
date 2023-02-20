@@ -26,10 +26,7 @@ export const getAllTimelapses = async (req, res) => {
 export const getSingleTimelapse = async (req, res) => {
   try {
     const { id } = req.params
-    const timelapseData = await Timelapse.findOne({ _id: id }).populate(
-      'createdBy'
-    )
-
+    const timelapseData = await Timelapse.findOne({ _id: id })
     if (!timelapseData) {
       return res.status(404).json({ msg: `No user with id : ${id}` })
     }
@@ -68,25 +65,32 @@ export const createTimelapse = async (req, res) => {
     const Render = await myGif.encode()
 
     //Writes the gif in this folder
-    await fs.writeFile(join(__dirname, '../gif/make-a-gif.gif'), Render)
+    const gifName = project.name.replace(/\s+/g, '');
+    await fs.writeFile(join(__dirname, `../gif/${gifName}.gif`), Render)
 
     const timelapseFile = new Timelapse({
-      name: "New Project",
+      name: project.name,
       createdBy: "63ef0f84c72473760d654405",
-      description: "Check out my new timelapse",
+      description: project.description,
+      project: req.params.id
     });
 
     timelapseFile.save()
 
     await Project.findOneAndUpdate(
-      { _id: '63f0f5807a4948a6d896b676' },
+      { _id: req.params.id },
       { $addToSet: { timelapse: timelapseFile._id } },
       { new: true }
     );
 
-    //const newTimelapse = await Timelapse.create(req.body)
 
-    res.sendFile(join(__dirname, '../gif/make-a-gif.gif'));
+    const generateBase64String = fss.readFileSync(`./gif/${gifName}.gif`, "base64")
+    const data = {
+      gifFile: generateBase64String,
+
+    }
+
+    res.status(200).send(data);
 
   } catch (error) {
     console.log(error)
