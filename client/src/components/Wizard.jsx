@@ -38,7 +38,7 @@ const Wizard = () => {
 
       <div className="row justify-content-center">
 
-        <form className='col-12' onSubmit={handleSubmit}>
+        <form className='col-12' onSubmit={(e) => handleSubmit(e)}>
           <legend className="text-center mb-5">New Project </legend>
             <div className="d-flex justify-content-between">
               <label htmlFor='timelapseName' >Your Project's Name </label>
@@ -80,7 +80,7 @@ const Wizard = () => {
             </div>
 
 
-            <button type="submit" className="myBtn mt-3" onClick={()=>handleSubmit()}>Submit</button>
+            <button type="submit" className="myBtn mt-3" >Submit</button>
         </form>
         </div>
 
