@@ -37,14 +37,16 @@ export default function ProjectPage(){
 
         <div className='d-flex flex-column mb-4 justify-content-center align-items-center container'>
 
-            <div className="d-flex mb-3">
+            <div className="d-flex mb-4">
                 {/* project name fetch from db */}
                 <h2 className="title">Project Name: {project.name}</h2>
             </div>
 
-            <button className='myBtn mb-4' onClick={()=> generateTimelapse(id)}>Generate Your Timelapse</button>
-
             <UploadPicture imageData={image} projectId={id}/>
+
+            <button className='myBtn my-4' onClick={()=> generateTimelapse(id)}>Generate Your Timelapse</button>
+
+            
 
         </div>
     )

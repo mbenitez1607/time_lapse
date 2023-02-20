@@ -76,16 +76,19 @@ function UploadImage() {
         </div>
       )
       }
-      <button className="myBtn" onClick={()=> handleSubmitFile()}>Save File</button> 
-      <label htmlFor="file-upload" className="myBtn">
-        Choose File
-      </label>
-      <input
-        id="file-upload"
-        type="file"
-        onChange={handleImageChange}
-        className="custom-file-input"
-      />
+      <div className='btnBox'>
+        <button className="myBtn" onClick={()=> handleSubmitFile()}>Save File</button> 
+        <label htmlFor="file-upload" className="myBtn">
+          Choose File
+        </label>
+        <input
+          id="file-upload"
+          type="file"
+          onChange={handleImageChange}
+          className="custom-file-input"
+        />
+        
+      </div>
       <span className="custom-file-label">{fileName || 'No file chosen'}</span>
     </div>
   );

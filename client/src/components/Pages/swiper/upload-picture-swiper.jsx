@@ -1,9 +1,15 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import {Pagination,Navigation} from 'swiper';
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
+import '../../../styles/swiper.css';
 
-import '../../../styles/swiper.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare,faTrashCan} from '@fortawesome/free-regular-svg-icons';
+
 
 import { Link } from "react-router-dom";
 
@@ -11,6 +17,8 @@ import { Link } from "react-router-dom";
 export default function UploadPicture(props) {
   return (
     <Swiper
+      modules={[Navigation, Pagination]}
+
       slidesPerView={2}
       spaceBetween={5}
 
@@ -25,21 +33,28 @@ export default function UploadPicture(props) {
         }
       }}
 
+      navigation
+      pagination={{ clickable: true }}
+
       className="mySwiper"
     >
-      {/* <SwiperSlide >
-        <Link className='myCard text-decoration-none' >
-            <div className="img" id="d1"></div>
-            <div className="text">Day1</div>
-        </Link>
-        </SwiperSlide> */}
 
       {props.imageData.map((image, index) => (
         <SwiperSlide >
 
           <div className='myCard text-decoration-none' >
-            <img className="img" height={400} width={215} src={`data:image/png;base64, ${image.base64String}`} alt="" />
+
+            <div className="img">
+              <img src={`data:image/png;base64, ${image.base64String}`} alt="" />
+            </div>
+
             <div className="text">img {index == 1 ? 1 : index}</div>
+
+            <div className='function'>
+                  <div><FontAwesomeIcon icon={faPenToSquare} color='#01cb88' size='2x'/></div>
+                  <div><FontAwesomeIcon icon={faTrashCan} color='#01cb88' size='2x'/></div>
+            </div>
+
           </div>
         </SwiperSlide>
       ))}
@@ -51,6 +66,8 @@ export default function UploadPicture(props) {
           
         </Link>
       </SwiperSlide>
+
+
 
     </Swiper>
 
