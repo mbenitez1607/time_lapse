@@ -1,5 +1,16 @@
 const url = 'http://localhost:3001/api'
 
+// Signup
+export const createUser = (data) => {
+  return fetch(`${url}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+}
+
 // Create new timelapse project
 export const createNewProject = (data, token) => {
   return fetch(`${url}/project`, {
@@ -12,7 +23,6 @@ export const createNewProject = (data, token) => {
   })
 }
 
-
 // Get all projects
 export const getAllProjects = () => {
   return fetch(`${url}/project`, {
@@ -22,20 +32,19 @@ export const getAllProjects = () => {
     },
   })
     .then((response) => response.json())
-    .then((data) =>  {
+    .then((data) => {
       return {
-        status:200,
-        data:data
+        status: 200,
+        data: data,
       }
     })
-    .catch((error) =>  {
+    .catch((error) => {
       return {
-        status:500,
-        error:error
+        status: 500,
+        error: error,
       }
     })
 }
-
 
 // Get single projects
 export const getSingleProject = (id) => {
@@ -46,21 +55,19 @@ export const getSingleProject = (id) => {
     },
   })
     .then((response) => response.json())
-    .then((data) =>  {
+    .then((data) => {
       return {
-        status:200,
-        data:data
+        status: 200,
+        data: data,
       }
     })
-    .catch((error) =>  {
+    .catch((error) => {
       return {
-        status:500,
-        error:error
+        status: 500,
+        error: error,
       }
     })
 }
-
-
 
 // Get all Timelapse projects
 export const getAllTimelapse = () => {
@@ -72,7 +79,7 @@ export const getAllTimelapse = () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      return data 
+      return data
     })
     .catch((error) => {
       return error
@@ -111,17 +118,17 @@ export const generateTimelapse = (id) => {
       'Content-Type': 'application/json',
     },
   })
-  .then((response) => response.json())
-  .then((data) =>  {
-    return {
-      status:200,
-      data:data
-    }
-  })
-  .catch((error) =>  {
-    return {
-      status:500,
-      error:error
-    }
-  })
+    .then((response) => response.json())
+    .then((data) => {
+      return {
+        status: 200,
+        data: data,
+      }
+    })
+    .catch((error) => {
+      return {
+        status: 500,
+        error: error,
+      }
+    })
 }
