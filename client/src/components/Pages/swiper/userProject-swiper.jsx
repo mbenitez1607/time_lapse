@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
-import "swiper/css";
-import '../../../styles/swiper.css'
 import { getAllProjects } from "../../../utils/API";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import {Pagination,Navigation} from 'swiper';
+
+import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
+import '../../../styles/swiper.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare,faTrashCan} from '@fortawesome/free-regular-svg-icons';
+
+import ProjectImg from '../../../img/userProject/project.jpg'
 
 
 export default function UserProject() {
@@ -29,6 +39,8 @@ export default function UserProject() {
 
   return (
     <Swiper
+      modules={[Navigation, Pagination]}
+
       slidesPerView={2}
       spaceBetween={5}
 
@@ -42,6 +54,8 @@ export default function UserProject() {
           spaceBetween: 20,
         }
       }}
+      navigation
+      pagination={{ clickable: true }}
 
       className="mySwiper"
     >
@@ -49,10 +63,16 @@ export default function UserProject() {
       {projects.map((project, index) => (
         <SwiperSlide >
           <Link to ={`/project/${project._id}`} className='myCard text-decoration-none'>
-            <a className='myCard text-decoration-none' href="#">
-              <div className="img" id="p1"></div>
+
+              <div className="img">
+                <img src={ProjectImg} alt="project" />
+              </div>
               <div className="text">{project.name}</div>
-            </a>
+              <div className='function'>
+                  <div><FontAwesomeIcon icon={faPenToSquare} color='#01cb88' size='2x'/></div>
+                  <div><FontAwesomeIcon icon={faTrashCan} color='#01cb88' size='2x'/></div>
+              </div>
+
           </Link>
         </SwiperSlide>
       ))}

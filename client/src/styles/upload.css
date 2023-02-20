@@ -31,6 +31,15 @@ input[type="file"] {
     border-radius: 8px;
 }
 
+.btnBox{
+    display: flex;
+    justify-content: center;
+}
+
+.btnBox button{
+    margin-right: 20px;
+}
+
 @media only screen and (max-width: 600px){
     .imageBox img{
         max-width: 360px;

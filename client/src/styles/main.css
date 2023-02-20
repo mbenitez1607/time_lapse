@@ -7,6 +7,10 @@
 	font-size: 18px;
 }
 
+body{
+    background-color: #F8F8F5;
+}
+
 .pageContainer{
     height: 100vh;
     display: flex;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../styles/main.css'
 import UserProject from './swiper/userProject-swiper'
-import Categories from './swiper/Categories-swiper'
+import Recommend from './swiper/recommend-swiper'
 
 const Homepage = () =>{
     return(
@@ -14,10 +14,10 @@ const Homepage = () =>{
             <UserProject />
             
             <div className="d-flex align-item-center container mt-3">
-                <h2 className="title">Categories:</h2>
+                <h2 className="title">Time lapse You Might Like:</h2>
             </div>
 
-            <Categories />
+            <Recommend />
 
         </div>
     )
