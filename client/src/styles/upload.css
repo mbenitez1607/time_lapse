@@ -37,7 +37,7 @@ input[type="file"] {
 }
 
 .btnBox button{
-    margin-right: 10%;
+    margin-right: 24px;
 }
 
 @media only screen and (max-width: 600px){
