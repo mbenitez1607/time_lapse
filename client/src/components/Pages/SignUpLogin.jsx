@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Import the firebase auth object, and the functions to create/signin users
-import { auth } from "../../firebase";
+//import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // Here we import a helper function that will check if the email is valid
 import { checkPassword, validateEmail } from '../../utils/helpers';
@@ -56,6 +56,7 @@ const SignLogin = () => {
             console.log(errorMessage);
             return;
         }
+/*
         // Last we checked for password2, if it's set we're registering a new user, else we're logging in an existing user
         if (password2) {
             // When signing up a new user verify the password and the confirmation match
@@ -101,6 +102,7 @@ const SignLogin = () => {
                     alert(`Sign in error: ${errorCode}, ${errorMessage}}`);
                 });
         }
+*/
         // If everything goes according to plan, we want to clear out the input after a successful registration.
         setEmail('');
         setPassword('');

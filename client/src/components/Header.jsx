@@ -4,6 +4,7 @@ import '../styles/header.css'
 import userPicture from '../img/header/user.png'
 
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Header () {
 
@@ -40,8 +41,10 @@ function Header () {
 
         <div className = "d-flex align-items-center justify-content-center col-md-4 text-center ">
 
-            <button className='myBtn' id='login' onClick={toLogin}>Login/SignUp</button>
-
+            {/*<button className='myBtn' id='login' onClick={toLogin} >Login/SignUp</button>*/}
+            <Link to={"/signin"}>
+            <button className='myBtn' id='login' to="/signin">Login/SignUp</button>
+            </Link>
         </div>
 
         {/* <div className="d-flex col-md-4 pe-3 justify-content-center mb-4 dropdown-right" id='userProfile'>
