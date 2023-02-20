@@ -7,6 +7,7 @@ import Wizard from './Wizard';
 import Homepage from './Pages/Homepage';
 import UploadImage from "./Pages/uploadPage";
 import ProjectPage from "./Pages/ProjectPage";
+import ResultPage from "./Pages/ResultPage";
 import "../styles/main.css"
 
 function PageContainer() {
@@ -21,6 +22,7 @@ function PageContainer() {
                 <Route path="/home" element={<Homepage />}/>
                 <Route path="/project/:id" element={<ProjectPage/>}/>
                 <Route path="/upload/:id" element={<UploadImage/>}/>
+                <Route path="/result/" element={<ResultPage/>}/>
             </Routes>
             <Footer />
         </div>
