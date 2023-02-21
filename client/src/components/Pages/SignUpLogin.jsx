@@ -5,7 +5,7 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // Here we import a helper function that will check if the email is valid
 import { checkPassword, validateEmail } from '../../utils/helpers';
-import {createUser} from '../../utils/API'
+import { createUser, sendGreeting } from '../../utils/API'
 import logo from '../../img/mainImg/logo1.png'
 import '../../styles/main.css'
 import '../../styles/signLogin.css'
@@ -77,6 +77,10 @@ const SignLogin = () => {
 
                     // store in mongoDB 
                     createUser({email, password, username: userName})
+
+                    // send out email
+                    // currently uses hard coded email
+                    sendGreeting()
             }
             else {
                 setErrorMessage(

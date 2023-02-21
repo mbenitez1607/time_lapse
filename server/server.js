@@ -5,12 +5,11 @@ import db from './config/connection.js'
 import routes from './routes/index.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import cron from 'node-cron'
+import { remind } from './helpers/API.js'
 
 // auth middleware to filter, and authorize or deny requests
 //import authMiddleware from './auth-middleware'
-
-// 🌟 Cron will send out emails as long as server is open 🌟
-// import cron from './controllers/sendEmail.js'
 
 import cors from 'cors'
 import bodyParser from 'body-parser'
@@ -37,6 +36,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))
 }
+
+// Basic reminder to be set at 3PM every day, once to all emails in DB
+cron.schedule('0 0 15 * * *', () => {
+  remind()
+})
 
 db.once('open', () => {
   app.listen(PORT, () => {
