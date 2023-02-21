@@ -164,3 +164,13 @@ export const generateTimelapse = (id) => {
       }
     })
 }
+
+// Send email on accountg creation
+export const sendGreeting = async () => {
+  return fetch(`${url}/send`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+}

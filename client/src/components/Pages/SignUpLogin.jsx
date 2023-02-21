@@ -5,7 +5,7 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // Here we import a helper function that will check if the email is valid
 import { checkPassword, validateEmail } from '../../utils/helpers';
-import { createUser } from '../../utils/API'
+import { createUser, sendGreeting } from '../../utils/API'
 import logo from '../../img/mainImg/logo1.png'
 import '../../styles/main.css'
 import '../../styles/signLogin.css'
@@ -66,7 +66,6 @@ const SignLogin = () => {
         } catch (error) {
             alert(`Sign in error: ${error}}`);
         }
-
     };
 
     const handleSignUp = async (e) => {
@@ -79,6 +78,7 @@ const SignLogin = () => {
                 console.log(errorMessage);
                 // We want to exit out of this code block if something is wrong so that the user can correct it
                 return;
+
             }
             // Then we check to see if the password is not valid. If so, we set an error message regarding the password.
             if (!checkPassword(password)) {
@@ -96,6 +96,11 @@ const SignLogin = () => {
                     const register = await createUserWithEmailAndPassword(auth, email, password)
                     // store in mongoDB 
                     await createUser({ email, password, username: userName })
+                    
+                    // send out email
+                    // currently uses hard coded email
+                    sendGreeting()
+                    
                     const token = await auth?.currentUser?.getIdToken(true);
                     localStorage.setItem("@token", token);
                     navigate('/home');
