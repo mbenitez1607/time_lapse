@@ -28,7 +28,7 @@ export const createProject = async (req, res, next) => {
       { new: true }
     )
 
-    res.status(200).send('Project successfully created')
+    return res.status(200).json({data:'project created!', status:200})
   } catch (error) {
     res.status(500).send(error.message)
   }
@@ -39,7 +39,7 @@ export const getAllProjects = async (req, res, next) => {
   try {
     const filter = { user: '63ef0f84c72473760d654405' }
     const allUserProjects = await Project.find(filter)
-    res.status(200).send(allUserProjects)
+    return res.status(200).json({data:allUserProjects, status:200})
   } catch (error) {
     console.log(error)
     res.status(500).send(error.message)
@@ -50,7 +50,6 @@ export const getSingleProject = async (req, res, next) => {
   try {
     const filter = { _id: req.params.id }
     const singleProject = await Project.findById(filter)
-
     const findImages = await SingleFile.find({
       _id: { $in: singleProject.images },
     })
@@ -75,7 +74,7 @@ export const getSingleProject = async (req, res, next) => {
       singleProjectImages: generateBase64String,
     }
 
-    res.status(200).send(data)
+    return res.status(200).json({data:data, status:200})
   } catch (error) {
     console.log(error)
     res.status(500).send(error.message)

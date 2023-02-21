@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from 'react';
+import { Outlet, useNavigate, Routes, Navigate, Route, redirect, BrowserRouter as Router } from 'react-router-dom';
+import { withRouter } from './withRouter'
 import Header from './Header';
 import Footer from './Footer';
 import LandingPage from './Pages/landingPage';
@@ -9,24 +11,101 @@ import UploadImage from "./Pages/uploadPage";
 import ProjectPage from "./Pages/ProjectPage";
 import ResultPage from "./Pages/ResultPage";
 import "../styles/main.css"
+import { auth } from "../firebase";
 
-function PageContainer() {
 
-    return (
-        <div className="pageContainer">
-            <Header />
-            <Routes>
-                <Route path= "/" element={<LandingPage />} />
-                <Route path= "/login" element={<SignPage />} />
-                <Route path="/wizard" element={<Wizard />}/>
-                <Route path="/home" element={<Homepage />}/>
-                <Route path="/project/:id" element={<ProjectPage/>}/>
-                <Route path="/upload/:id" element={<UploadImage/>}/>
-                <Route path="/result/*" element={<ResultPage/>}/>
-            </Routes>
-            <Footer />
-        </div>
-    )
+
+const PrivateRoute = (props) => {
+    console.log("i am in Private")
+    const [loaded, setLoaded] = useState(false)
+    const [isAuthenticated, setisAuthenticated] = useState(false)
+    const [authToken, setauthToken] = useState(false)
+    const navigate = useNavigate();
+
+    const checkAuth = async () => {
+        const token = localStorage.getItem("@token")
+        if (token) {
+            setauthToken(token)
+            setisAuthenticated(true)
+            setLoaded(true)
+        }
+        else {
+            setauthToken(null)
+            setisAuthenticated(false)
+            setLoaded(true)
+        }
+    }
+
+    useEffect(() => {
+        checkAuth()
+    }, [authToken]);
+
+    if (!loaded) return null;
+
+    return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />
 }
 
+
+const PublicRoute = (props) => {
+    const [loaded, setLoaded] = useState(false)
+    const [isAuthenticated, setisAuthenticated] = useState(false)
+    const [authToken, setauthToken] = useState(false)
+
+
+    const checkAuth = () => {
+        const token = localStorage.getItem("@token")
+        if (token) {
+            setauthToken(token)
+            setisAuthenticated(true)
+
+        }
+        setLoaded(true)
+    }
+
+    useEffect(() => {
+        checkAuth()
+    }, [authToken]);
+
+    if (!loaded) return null;
+
+    return isAuthenticated ? <Navigate to="/home" replace /> : <Outlet />
+}
+
+
+
+const PageContainer = () => (
+    <div className="pageContainer">
+        <Router>
+            <Fragment>
+                <Header />
+                <Routes >
+                    <Route exact path='/' element={<PublicRoute />}>
+                        <Route exact path='/' element={<LandingPage />} />
+                    </Route>
+                    <Route exact path='/login' element={<PublicRoute />}>
+                        <Route exact path='/login' element={<SignPage />} />
+                    </Route>
+                    <Route exact path='/wizard' element={<PrivateRoute />}>
+                        <Route exact path='/wizard' element={<Wizard />} />
+                    </Route>
+                    <Route exact path='/home' element={<PrivateRoute />}>
+                        <Route exact path='/home' element={<Homepage />} />
+                    </Route>
+                    <Route exact path='/project/:id' element={<PrivateRoute />}>
+                        <Route path="/project/:id" element={<ProjectPage />} />
+                    </Route>
+                    <Route exact path='/upload/:id' element={<PrivateRoute />}>
+                        <Route path="/upload/:id" element={<UploadImage />} />
+                    </Route>
+                    <Route exact path='/result/' element={<PrivateRoute />}>
+                        <Route path="/result/*" element={<ResultPage />} />
+                    </Route>
+                </Routes >
+            </Fragment>
+        </Router>
+        <Footer />
+    </div>
+);
+
 export default PageContainer;
+
