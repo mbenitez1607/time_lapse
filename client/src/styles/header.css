@@ -39,12 +39,12 @@
 }
 
 .dropdownText li a{
-	color: #4A90E2;
+	color: #01cb88;
 	font-weight: 600;
 }
 
 .dropdownText li a:hover{
-	color: #3C64B1;
+	color: #50a060;
 }
 
 #userProfile button.disappear{
