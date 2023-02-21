@@ -26,6 +26,7 @@ export default function UserProject() {
       const userProjects = await getAllProjects()
       const { status } = userProjects
       if (status == 401){ 
+        localStorage.removeItem("@token")
         navigate('/login') 
         return 
       }
