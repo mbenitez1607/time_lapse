@@ -1,7 +1,6 @@
 
 import SingleFile from '../models/Singlefile.js';
 import Project from '../models/Project.js'
-import { Buffer } from 'node:buffer';
 
 export const singleFileUpload = async (req, res, next) => {
     try {
@@ -26,6 +25,19 @@ export const singleFileUpload = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
+
+export const updateFile = async (req, res) => {
+  try {
+    const id = req.params
+    const findSingleFile = SingleFile.findById(id)
+    console.log("this is findSingleFile", findSingleFile)
+    
+  } catch (error) {
+    console.log(error)  
+  }
+}
+
+
 
 export const deleteFile = async (req, res) => {
     try {

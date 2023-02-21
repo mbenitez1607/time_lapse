@@ -85,12 +85,12 @@ export const createTimelapse = async (req, res) => {
 
 
     const generateBase64String = fss.readFileSync(`./gif/${gifName}.gif`, "base64")
+    
     const data = {
       gifFile: generateBase64String,
-
     }
 
-    res.status(200).send(data);
+    return res.status(200).json({data:data, status:200})
 
   } catch (error) {
     console.log(error)

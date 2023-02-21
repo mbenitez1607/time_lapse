@@ -13,16 +13,25 @@ export default function ProjectPage() {
     const [image, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const { id } = useParams();
+
+    const  { id } = useParams();
+
     const singularProject = async () => {
         try {
-            const singleProject = await getSingleProject(id);
-            const { status } = singleProject;
-            if (status === 200) {
-                setProject(singleProject.data.projectData);
-                setImages(singleProject.data.singleProjectImages);
-            } else {
-                alert("Oops something went wrong!!");
+            const singleProject = await getSingleProject(id)
+            const { status } = singleProject
+            if (status == 401){ 
+              navigate('/login') 
+              return 
+            }
+            if (status == 200){
+                 setProject(singleProject.data.data.projectData)
+                 setImages(singleProject.data.data.singleProjectImages)
+            }
+            else {
+              alert("Ooops something went wrong!!")
+
+  
             }
             console.log("This is singularProject", singleProject);
         } catch (error) {
@@ -32,20 +41,27 @@ export default function ProjectPage() {
 
     const generateProjectTimelapse = async () => {
         try {
-            setIsLoading(true); // set isLoading to true
-            const projectTimelapse = await generateTimelapse(id);
-            const { status, data } = projectTimelapse;
-            if (status === 200) {
-                navigate(`/result/${data.gifFile}`);
-            } else {
-                console.log("Testing", projectTimelapse);
-            }
+
+          const projectTimelapse = await generateTimelapse(id)
+          const { status, data } = projectTimelapse
+          if (status == 401){ 
+            navigate('/login') 
+            return 
+          }
+          if (status == 200) navigate(`/result/${data.data.gifFile}`);
+          else {
+            alert("Ooops something went wrong!!")
+          }
+
+  
         } catch (error) {
             console.log(error);
         } finally {
             setIsLoading(false); // set isLoading to false
         }
-    };
+
+      }
+
 
     useEffect(() => {
         singularProject();

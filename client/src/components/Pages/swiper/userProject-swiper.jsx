@@ -4,6 +4,7 @@ import { getAllProjects } from "../../../utils/API";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import {Pagination,Navigation} from 'swiper';
+import { useNavigate } from 'react-router-dom';
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -18,12 +19,17 @@ import ProjectImg from '../../../img/userProject/project.jpg'
 
 export default function UserProject() {
   const [projects, setProject] = useState([])
-
+  const navigate = useNavigate();
+  
   const loadAllProjects = async () => {
     try {
       const userProjects = await getAllProjects()
       const { status } = userProjects
-      if (status == 200) setProject(userProjects.data)
+      if (status == 401){ 
+        navigate('/login') 
+        return 
+      }
+      if (status == 200) setProject(userProjects.data.data)
       else {
         alert("Ooops something went wrong!!")
       }
