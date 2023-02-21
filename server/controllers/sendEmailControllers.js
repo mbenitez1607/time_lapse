@@ -7,7 +7,8 @@ const reminderHTML = fs.readFileSync('./emailTemplates/reminder.html', 'utf-8')
 
 export const sendGreetingEmail = async (req, res) => {
   try {
-    sendGreeting(greetingHTML, 'Welcome Email', '<insert email here>')
+    const email = req.body.email
+    sendGreeting(greetingHTML, 'Welcome Email', email)
 
     res.status(200).json({ msg: 'Email sent successfully' })
   } catch (error) {
