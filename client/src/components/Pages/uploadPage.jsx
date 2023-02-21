@@ -6,6 +6,7 @@ import {
   useParams
 } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading';
 
 
 import placeholderImage from '../../img/upload/sample.png';
@@ -16,6 +17,7 @@ function UploadImage() {
   const [fileName, setFileName] = useState('');
   const  { id } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageChange = (event) => {
     const selectedImage = event.target.files[0];
@@ -31,7 +33,10 @@ function UploadImage() {
     reader.readAsDataURL(selectedImage);
   };
 
-  const handleSubmitFile = () => {
+  const HandleSubmitFile = () => {
+
+
+    setIsLoading(true);
   
     if (finalImg !== null) {
 
@@ -50,13 +55,16 @@ function UploadImage() {
           },
         }
       )
-        .then(res => {
-          console.log(`Success` + res.data);
-          navigate(`/project/${id}`);
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      .then(res => {
+        console.log(`Success` + res.data);
+        navigate(`/project/${id}`);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
     }
   }
 
@@ -77,7 +85,9 @@ function UploadImage() {
       )
       }
       <div className='btnBox'>
-        <button className="myBtn" onClick={()=> handleSubmitFile()}>Save File</button> 
+        <button className="myBtn" onClick={()=> HandleSubmitFile()}>
+          {isLoading ? <Loading /> : 'Save File'}
+        </button> 
         <label htmlFor="file-upload" className="myBtn">
           Choose File
         </label>
