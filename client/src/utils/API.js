@@ -1,6 +1,5 @@
 const url = 'http://localhost:3001/api'
 
-
 // Signup
 export const createUser = (data) => {
   const token = localStorage.getItem('@token')
@@ -8,7 +7,7 @@ export const createUser = (data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
     body: JSON.stringify(data),
   })
@@ -21,24 +20,24 @@ export const createNewProject = (data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
     body: JSON.stringify(data),
   })
-  .then((response) => response.json())
-  .then((data) => {
-    const {status} = data
-    return {
-      status: status,
-      data: data,
-    }
-  })
-  .catch((error) => {
-    return {
-      status: 500,
-      error: error,
-    }
-  })
+    .then((response) => response.json())
+    .then((data) => {
+      const { status } = data
+      return {
+        status: status,
+        data: data,
+      }
+    })
+    .catch((error) => {
+      return {
+        status: 500,
+        error: error,
+      }
+    })
 }
 
 // Get all projects
@@ -48,12 +47,12 @@ export const getAllProjects = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
   })
     .then((response) => response.json())
     .then((data) => {
-      const {status} = data
+      const { status } = data
       return {
         status: status,
         data: data,
@@ -74,12 +73,12 @@ export const getSingleProject = (id) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
   })
     .then((response) => response.json())
     .then((data) => {
-      const {status} = data
+      const { status } = data
       return {
         status: status,
         data: data,
@@ -100,7 +99,7 @@ export const getAllTimelapse = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
   })
     .then((response) => response.json())
@@ -119,7 +118,7 @@ export const getSingleTimelapse = (id) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
   })
     .then((response) => response.json())
@@ -134,7 +133,7 @@ export const addComment = (data, timelapseID) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
     body: JSON.stringify(data),
   })
@@ -146,12 +145,12 @@ export const generateTimelapse = (id) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ` + token
+      Authorization: `Bearer ` + token,
     },
   })
     .then((response) => response.json())
     .then((data) => {
-      const {status} = data
+      const { status } = data
       return {
         status: status,
         data: data,
@@ -166,11 +165,14 @@ export const generateTimelapse = (id) => {
 }
 
 // Send email on accountg creation
-export const sendGreeting = async () => {
+export const sendGreeting = async (email) => {
+  const token = localStorage.getItem('@token')
   return fetch(`${url}/send`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ` + token,
     },
+    body: JSON.stringify(email),
   })
 }

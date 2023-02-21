@@ -94,15 +94,17 @@ const SignLogin = () => {
                 if (password == password2) {
                     // Sign up new user
                     const register = await createUserWithEmailAndPassword(auth, email, password)
+
+                    const token = await auth?.currentUser?.getIdToken(true);
+
+                    localStorage.setItem("@token", token);
+
+                    // 🌟 These 2 API calls must come after the token is created and stored for the API calls to work
                     // store in mongoDB 
                     await createUser({ email, password, username: userName })
+                    // send out greeting email
+                    await sendGreeting({email: email})
                     
-                    // send out email
-                    // currently uses hard coded email
-                    sendGreeting()
-                    
-                    const token = await auth?.currentUser?.getIdToken(true);
-                    localStorage.setItem("@token", token);
                     navigate('/home');
                 }
 

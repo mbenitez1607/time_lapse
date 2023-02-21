@@ -10,12 +10,6 @@ const userSchema = new Schema(
       trim: true,
     },
 
-    myId: {
-      type: String,
-      required: [true, 'Please type: Schema.Types.ObjectId,'],
-      unique: true,
-    },
-
     email: {
       type: String,
       required: [true, 'Please enter a valid email address'],
@@ -50,18 +44,12 @@ const userSchema = new Schema(
       },
     ],
 
-    // 🌟 NOTE represents arrays of images that are uploaded
-    // 🌟 Assumption: For the MVP, a user can only work on one timelapse at a time
-    // images get posted, and saved to this array under user model
-
     project: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Project',
       },
-    ]
-
-
+    ],
   },
   {
     toJSON: {
@@ -86,10 +74,3 @@ userSchema.methods.comparePassword = async function (canditatePassword) {
 const User = model('user', userSchema)
 
 export default User
-
-// NOTES:
-// Regarding timelapses -> Waiting to see how images get implemeted before finalizing
-// Roughing in potential future additions to the models. Leaving commenetd out for now, until idea is fully fleshed out
-
-// timelapses -> Referencing the COMPLETED GIF
-// Images -> Referecning the images users are uploading
