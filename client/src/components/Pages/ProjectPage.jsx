@@ -14,24 +14,26 @@ export default function ProjectPage() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-    const  { id } = useParams();
+    const { id } = useParams();
 
     const singularProject = async () => {
         try {
             const singleProject = await getSingleProject(id)
             const { status } = singleProject
-            if (status == 401){ 
-              navigate('/login') 
-              return 
+            if (status == 401) {
+                localStorage.removeItem("@token")
+
+                navigate('/login')
+                return
             }
-            if (status == 200){
-                 setProject(singleProject.data.data.projectData)
-                 setImages(singleProject.data.data.singleProjectImages)
+            if (status == 200) {
+                setProject(singleProject.data.data.projectData)
+                setImages(singleProject.data.data.singleProjectImages)
             }
             else {
-              alert("Ooops something went wrong!!")
+                alert("Ooops something went wrong!!")
 
-  
+
             }
             console.log("This is singularProject", singleProject);
         } catch (error) {
@@ -42,25 +44,27 @@ export default function ProjectPage() {
     const generateProjectTimelapse = async () => {
         try {
 
-          const projectTimelapse = await generateTimelapse(id)
-          const { status, data } = projectTimelapse
-          if (status == 401){ 
-            navigate('/login') 
-            return 
-          }
-          if (status == 200) navigate(`/result/${data.data.gifFile}`);
-          else {
-            alert("Ooops something went wrong!!")
-          }
+            const projectTimelapse = await generateTimelapse(id)
+            const { status, data } = projectTimelapse
+            if (status == 401) {
+                localStorage.removeItem("@token")
 
-  
+                navigate('/login')
+                return
+            }
+            if (status == 200) navigate(`/result/${data.data.gifFile}`);
+            else {
+                alert("Ooops something went wrong!!")
+            }
+
+
         } catch (error) {
             console.log(error);
         } finally {
             setIsLoading(false); // set isLoading to false
         }
 
-      }
+    }
 
 
     useEffect(() => {
@@ -73,7 +77,7 @@ export default function ProjectPage() {
                 <h2 className="title">Project Name: {project.name}</h2>
             </div>
             <UploadPicture imageData={image} projectId={id} />
-           
+
             <button className='myBtn my-4' onClick={generateProjectTimelapse}>
                 {isLoading ? <Loading /> : 'Generate Your Timelapse'}
                 {/* <Loading/> */}
