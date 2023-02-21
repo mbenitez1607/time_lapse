@@ -47,7 +47,16 @@ To run a version of the application on your localhost do the following:
 
 ## 🤹 Usage
 
-Once installation is complete and the browser loads, register an account my entering requested information. After registering, login and follow instructions on generating a new timelapse project, have fun!  
+Once installation is complete and the browser loads, register an account my entering requested information. After registering, login and follow instructions on generating a new timelapse project. Use the screenshots below as a guide:
+
+Login/Register 
+<p><img src="./screenshots/login.png" ></p>
+<p>Create Project</p> 
+<p><img src="./screenshots/uploadShot1.png" ></p>
+<p>Upload Images</p> 
+<p><img src="./screenshots/uploadShot.png" ></p>
+<p>Generate Timelapse GIF</p> 
+<p><img src="./screenshots/timelapse.png" ></p>
 
 
 ## ✔️ Tests
