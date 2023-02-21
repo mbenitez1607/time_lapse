@@ -6,13 +6,15 @@ import commentRoutes from './commentRoutes.js'
 import filesRoutes from './file-upload-routes.js'
 import projectRoutes from './projectRoutes.js'
 import sendEmailRoutes from './sendEmailRoute.js'
+import middleware from '../middleware/index.js'
 
-router.use('/users', userRoutes)
-router.use('/timelapse', timelapseRoutes)
-router.use('/timelapse', commentRoutes)
-router.use('/files', filesRoutes)
-router.use('/project', projectRoutes)
-router.use('/send', sendEmailRoutes)
+router.use('/users',middleware, userRoutes)
+router.use('/timelapse',middleware, timelapseRoutes)
+router.use('/timelapse',middleware, commentRoutes)
+router.use('/files',middleware, filesRoutes)
+router.use('/project',middleware, projectRoutes)
+router.use('/send',middleware, sendEmailRoutes)
+
 
 router.use((req, res) => res.send('Wrong route!'))
 

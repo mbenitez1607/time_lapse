@@ -6,25 +6,33 @@ import '../styles/wizard.css'
 
 const Wizard = () => {
   const navigate = useNavigate();
+
   const [timelapseName, setTimelapseName] = useState('')
   const [days, setDays] = useState('')
   const [description, setDescription] = useState('')
 
-  function handleSubmit (e) {
+  const newProject = async (e) => {
     e.preventDefault()
-
     if (timelapseName && days) {
-
       const data = {
         name: timelapseName,
         description,
         days
       }
 
-      createNewProject(data)
-      // after a successfulpost, redirect to that project page
-      
-      navigate('/home');
+      const newProject = await createNewProject(data)
+      const { status } = newProject
+      if (status == 401) {
+        navigate('/login')
+        return
+      }
+      if (status == 200) {
+        navigate('/home');
+      }
+      else {
+        alert("Ooops something went wrong!!")
+      }
+
 
     } else {
       console.log('empty values')
@@ -36,10 +44,10 @@ const Wizard = () => {
     <section className="d-flex justify-content-center">
       <div className="wizardContainer p-3">
 
-      <div className="row justify-content-center">
+        <div className="row justify-content-center">
 
-        <form className='col-12' onSubmit={(e) => handleSubmit(e)}>
-          <legend className="text-center mb-5">New Project </legend>
+          <form className='col-12' onSubmit={(e) => newProject(e)}>
+            <legend className="text-center mb-5">New Project </legend>
             <div className="d-flex justify-content-between">
               <label htmlFor='timelapseName' >Your Project's Name </label>
               <input
@@ -49,7 +57,7 @@ const Wizard = () => {
                 name='timelapseName'
                 value={timelapseName}
                 onChange={(e) => setTimelapseName(e.target.value)}
-                />
+              />
             </div>
 
             <div className="d-flex justify-content-between">
@@ -67,26 +75,26 @@ const Wizard = () => {
             <div>
               <label htmlFor='description'>Description </label>
               <div className="form-floating">
-                <textarea 
-                  className="form-control" 
+                <textarea
+                  className="form-control"
                   id="floatingTextarea"
-                  style={{height: 150 + 'px'}}
+                  style={{ height: 150 + 'px' }}
                   value={description}
                   placeholder={'optional'}
                   onChange={(e) => setDescription(e.target.value)}
-                  >
+                >
                 </textarea>
               </div>
             </div>
 
 
             <button type="submit" className="myBtn mt-3" >Submit</button>
-        </form>
+          </form>
         </div>
 
 
       </div>
-      
+
     </section>
   )
 }

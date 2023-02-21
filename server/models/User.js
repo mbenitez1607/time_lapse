@@ -1,4 +1,4 @@
-import { Schema, model, Types} from 'mongoose'
+import { Schema, model, Types } from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const userSchema = new Schema(
@@ -9,6 +9,13 @@ const userSchema = new Schema(
       required: [true, 'please provide a unique username'],
       trim: true,
     },
+
+    myId: {
+      type: String,
+      required: [true, 'Please type: Schema.Types.ObjectId,'],
+      unique: true,
+    },
+
     email: {
       type: String,
       required: [true, 'Please enter a valid email address'],
@@ -47,7 +54,7 @@ const userSchema = new Schema(
     // 🌟 Assumption: For the MVP, a user can only work on one timelapse at a time
     // images get posted, and saved to this array under user model
 
-    project:[
+    project: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Project',

@@ -6,9 +6,7 @@ import PageContainer from './components/PageContainer';
 function App() {
 
     return (
-        <BrowserRouter>
             <PageContainer />
-        </BrowserRouter>
     )
 }
 
