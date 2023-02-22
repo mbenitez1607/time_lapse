@@ -13,6 +13,32 @@ export const createUser = (data) => {
   })
 }
 
+//Get user name
+export const getUsername = () => {
+  const token = localStorage.getItem('@token')
+  return fetch(`${url}/users/singleUser`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ` + token,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const { status } = data
+      return {
+        status: status,
+        data: data,
+      }
+    })
+    .catch((error) => {
+      return {
+        status: 500,
+        error: error,
+      }
+    })
+}
+
 // Create new timelapse project
 export const createNewProject = (data) => {
   const token = localStorage.getItem('@token')

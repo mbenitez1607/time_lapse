@@ -72,8 +72,6 @@ const PublicRoute = (props) => {
     return isAuthenticated ? <Navigate to="/home" replace /> : <Outlet />
 }
 
-
-
 const PageContainer = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
   
