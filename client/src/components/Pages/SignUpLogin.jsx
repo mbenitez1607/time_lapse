@@ -9,6 +9,7 @@ import { createUser, sendGreeting } from '../../utils/API'
 import logo from '../../img/mainImg/logo1.png'
 import '../../styles/main.css'
 import '../../styles/signLogin.css'
+import Loading from '../Loading';
 
 
 const SignLogin = () => {
@@ -19,6 +20,7 @@ const SignLogin = () => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (e) => {
         // Getting the value and name of the input which triggered the change
@@ -41,6 +43,7 @@ const SignLogin = () => {
     // Handle form submission here
     const handleLogin = async (e) => {
         try {
+            setIsLoading(true);
             e.preventDefault();
             // First we check to see if the email is not valid or if the userName is empty. If so we set an error message to be displayed on the page.
             if (!validateEmail(email)) {
@@ -62,15 +65,20 @@ const SignLogin = () => {
             const token = await auth?.currentUser?.getIdToken(true);
             localStorage.setItem("@token", token);
             navigate('/home');
+            window.location.reload();
 
         } catch (error) {
             alert(`Sign in error: ${error}}`);
+        } finally {
+            setIsLoading(false); 
         }
+
     };
 
     const handleSignUp = async (e) => {
 
         try {
+            setIsLoading(true);
             e.preventDefault();
             // First we check to see if the email is not valid or if the userName is empty. If so we set an error message to be displayed on the page.
             if (!validateEmail(email)) {
@@ -107,14 +115,15 @@ const SignLogin = () => {
                     await sendGreeting({email: email})
                     
                     navigate('/home');
+                    window.location.reload();
                 }
 
             }
         } catch (error) {
             alert(`SignUp error: ${error}}`);
+        } finally {
+            setIsLoading(false); 
         }
-
-
 
 
     };
@@ -151,7 +160,7 @@ const SignLogin = () => {
                         <h1>login</h1>
                         <input type="email" placeholder="Email" value={email} name="email" onChange={handleInputChange} />
                         <input type="password" placeholder="Password" value={password} name="password" onChange={handleInputChange} />
-                        <button type="submit" className="myBtn" onClick={handleLogin}>Login</button>
+                        <button type="submit" className="myBtn" onClick={handleLogin}>{isLoading ? <Loading /> : 'Login'}</button>
                         <div className="control">
                             <span>No account yet? <a href="#" onClick={toRegister}>Register</a></span>
                         </div>
@@ -162,7 +171,7 @@ const SignLogin = () => {
                         <input type="email" placeholder="Email" value={email} name="email" onChange={handleInputChange} />
                         <input type="password" placeholder="Password" value={password} name="password" onChange={handleInputChange} />
                         <input type="password" placeholder="Confirm Password" value={password2} name="password2" onChange={handleInputChange} />
-                        <button type="submit" className="myBtn" onClick={handleSignUp}>Register</button>
+                        <button type="submit" className="myBtn" onClick={handleSignUp}>{isLoading ? <Loading /> : 'Register'}</button>
                         <div className="control">
                             <span>Already have account? <a href="#" onClick={toLogin}>Login</a></span>
                         </div>
