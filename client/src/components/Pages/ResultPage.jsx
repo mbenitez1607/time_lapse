@@ -6,9 +6,6 @@ import {
   useParams
 } from "react-router-dom";
 
-import finalGif from '../../img/recommend/r1.gif'
-
-
 
 function ResultPage (){
 

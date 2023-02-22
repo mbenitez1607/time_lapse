@@ -41,17 +41,17 @@ const Wizard = () => {
 
 
   return (
-    <section className="d-flex justify-content-center">
-      <div className="wizardContainer p-3">
+    <section className="d-flex justify-content-center mb-4">
+      <div className="wizardContainer">
 
         <div className="row justify-content-center">
 
-          <form className='col-12' onSubmit={(e) => newProject(e)}>
-            <legend className="text-center mb-5">New Project </legend>
-            <div className="d-flex justify-content-between">
-              <label htmlFor='timelapseName' >Your Project's Name </label>
+          <form onSubmit={(e) => newProject(e)}>
+            <legend className="text-center mb-5 "><span>New</span> Project </legend>
+            <div className="d-flex flex-column">
+              <label htmlFor='timelapseName' >Your <span>Project's Name</span> </label>
               <input
-                className="mb-3"
+                className="mb-3 myInput p-2"
                 type='text'
                 id='timelapseName'
                 name='timelapseName'
@@ -60,10 +60,10 @@ const Wizard = () => {
               />
             </div>
 
-            <div className="d-flex justify-content-between">
-              <label htmlFor='days'>How many days? </label>
+            <div className="d-flex flex-column">
+              <label htmlFor='days'>How many <span>days?</span> </label>
               <input
-                className="mb-3"
+                className="mb-3 myInput p-2"
                 type='number'
                 id='days'
                 name='days'
@@ -73,12 +73,11 @@ const Wizard = () => {
             </div>
 
             <div>
-              <label htmlFor='description'>Description </label>
+              <label htmlFor='description'><span>Description</span> </label>
               <div className="form-floating">
                 <textarea
-                  className="form-control"
+                  className="form-control p-2 "
                   id="floatingTextarea"
-                  style={{ height: 150 + 'px' }}
                   value={description}
                   placeholder={'optional'}
                   onChange={(e) => setDescription(e.target.value)}
