@@ -43,7 +43,7 @@ export default function ProjectPage() {
 
     const generateProjectTimelapse = async () => {
         try {
-
+            setIsLoading(true);
             const projectTimelapse = await generateTimelapse(id)
             const { status, data } = projectTimelapse
             if (status == 401) {
@@ -61,7 +61,7 @@ export default function ProjectPage() {
         } catch (error) {
             console.log(error);
         } finally {
-            setIsLoading(false); // set isLoading to false
+            setIsLoading(false); 
         }
 
     }
