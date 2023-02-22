@@ -12,7 +12,7 @@ import  {
 } from '../controllers/userControllers.js'
 
 router.route('/').post(createUser).get(getAllUsers)
-router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
+router.route('/singleUser').get(getUser).put(updateUser).delete(deleteUser)
 router.route('/:id/follow/:fid').post(followUser).delete(unfollowUser)
 
 export default router
