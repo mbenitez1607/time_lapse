@@ -92,6 +92,31 @@ export const getSingleProject = (id) => {
     })
 }
 
+// Delete a Project
+export const deleteSingleProject = (id) => {
+  const token = localStorage.getItem('@token')
+  return fetch(`${url}/project/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ` + token,
+    },
+  })
+}
+
+// Edit a Single Project
+export const editSingleProject = (id) => {
+  const token = localStorage.getItem('@token')
+  return fetch(`${url}/project/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ` + token,
+    },
+    // body: JSON.stringify(data),
+  })
+}
+
 // Get all Timelapse projects
 export const getAllTimelapse = () => {
   const token = localStorage.getItem('@token')
@@ -164,7 +189,7 @@ export const generateTimelapse = (id) => {
     })
 }
 
-// Send email on accountg creation
+// Send email on account creation
 export const sendGreeting = async (email) => {
   const token = localStorage.getItem('@token')
   return fetch(`${url}/send`, {
