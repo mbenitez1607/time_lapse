@@ -48,7 +48,7 @@ export default function UploadPicture(props) {
               <img src={`data:image/png;base64, ${image.base64String}`} alt="" />
             </div>
 
-            <div className="text">img {index == 1 ? 1 : index}</div>
+            <div className="text">img {(index == 1 ? 1 : index)+1}</div>
 
             <div className='function'>
                   <div><FontAwesomeIcon icon={faPenToSquare} color='#01cb88' size='2x'/></div>
