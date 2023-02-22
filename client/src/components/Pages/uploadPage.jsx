@@ -34,7 +34,7 @@ function UploadImage() {
   };
 
   const HandleSubmitFile = () => {
-
+    const token = localStorage.getItem('@token')
 
     setIsLoading(true);
   
@@ -50,17 +50,22 @@ function UploadImage() {
         formData,
         {
           headers: {
-            "Authorization": "",
+            Authorization: `Bearer ` + token,
             "Content-type": "multipart/form-data",
           },
         }
       )
-      .then(res => {
-        console.log(`Success` + res.data);
+      .then(data => {
+        const { status } = data
+        console.log(`status is this:` + status);
         navigate(`/project/${id}`);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
+        const { status } = err.response.data
+        if(status==401){
+          navigate(`/login`);
+        }
       })
       .finally(() => {
         setIsLoading(false);
