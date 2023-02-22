@@ -10,10 +10,15 @@
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
-  "keywords": ["MERN, single-page application"],
+  "keywords": [
+    "MERN, single-page application"
+  ],
   "author": "@Jon-Ledo, @Samdemarco, @Kay-Annn, @Hpyorange, @mbenitez1607",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "firebase": "^9.17.1"
   }
 }
