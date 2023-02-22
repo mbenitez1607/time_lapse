@@ -17,6 +17,7 @@ function MemberHeader () {
     const logout = () =>{
         localStorage.removeItem('@token');
         navigate('/');
+        window.location.reload();
     }
 
     return(

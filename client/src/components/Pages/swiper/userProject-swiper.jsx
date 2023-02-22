@@ -89,7 +89,7 @@ export default function UserProject() {
                   <FontAwesomeIcon className='cursor' icon={faPenToSquare} color='#01cb88' size='2x'/>
                 </div>
 
-                <div onClick={() => deleteSingleProject(`${project._id}`)}>
+                <div onClick={() => {deleteSingleProject(`${project._id}`);window.location.reload();}}>
                   <FontAwesomeIcon className='cursor' icon={faTrashCan} color='#01cb88' size='2x'/>
                 </div>
             </div>
