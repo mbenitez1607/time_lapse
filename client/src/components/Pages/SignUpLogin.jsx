@@ -93,7 +93,7 @@ const SignLogin = () => {
                 // When signing up a new user verify the password and the confirmation match
                 if (password == password2) {
                     // Sign up new user
-                    const register = await createUserWithEmailAndPassword(auth, email, password)
+                    await createUserWithEmailAndPassword(auth, email, password)
 
                     const token = await auth?.currentUser?.getIdToken(true);
 
@@ -101,7 +101,8 @@ const SignLogin = () => {
 
                     // 🌟 These 2 API calls must come after the token is created and stored for the API calls to work
                     // store in mongoDB 
-                    await createUser({ email, password, username: userName })
+                    const id = auth?.currentUser?.uid
+                    await createUser({ _id:id, email, username: userName })
                     // send out greeting email
                     await sendGreeting({email: email})
                     
