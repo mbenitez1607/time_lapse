@@ -12,13 +12,13 @@ function GuestHeader () {
     const toLogin = () =>{
         const loginBtn = document.querySelector('#login');
         navigate('/login');
-        loginBtn.style.display = 'none';
+        loginBtn.style.visibility = 'hidden';
     }
 
     const toLanding = () =>{
         const loginBtn = document.querySelector('#login');
         navigate('/');
-        loginBtn.style.display = 'inline';
+        loginBtn.style.visibility = 'visible';
     }
 
     return(
@@ -26,7 +26,7 @@ function GuestHeader () {
 
         <div className= "d-flex align-items-center justify-content-center text-center col-md-4 col-12">
             <div className = "d-flex justify-content-center align-items-center logo">
-                <img src={logo} alt="logo" style={{ height: 100}}/>
+                <img src={logo} alt="logo" />
             </div>
         </div>
 

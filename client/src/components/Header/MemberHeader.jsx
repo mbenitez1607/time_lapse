@@ -14,12 +14,17 @@ function MemberHeader () {
         navigate('/home');
     }
 
+    const logout = () =>{
+        localStorage.removeItem('@token');
+        navigate('/');
+    }
+
     return(
     <header className = "d-flex flex-wrap justify-content-around align-items-center mb-4">
 
         <div className= "d-flex align-items-center justify-content-center text-center col-md-4 col-12">
             <div className = "d-flex justify-content-center align-items-center logo">
-                <img src={logo} alt="logo" style={{ height: 100}}/>
+                <img src={logo} alt="logo"/>
             </div>
         </div>
 
@@ -38,13 +43,14 @@ function MemberHeader () {
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false">
-              <span id="label-username">username</span>
+              <span id="label-username">username</span> 
+              {/* fetch from userdb */}
               <span>
                 <img src={userPicture} alt="user picture" />
               </span>
               <ul class="dropdown-menu dropdownText">
                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" onclick="logOut()">Log Out</a></li>
+                <li><a class="dropdown-item" onClick={logout}>Log Out</a></li>
               </ul>
             </button>
         </div>
