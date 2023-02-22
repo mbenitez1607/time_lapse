@@ -1,8 +1,12 @@
 import { Schema, model, Types } from 'mongoose'
-import bcrypt from 'bcrypt'
 
 const userSchema = new Schema(
   {
+    _id: {
+      type: String,
+      require: true,
+    },
+
     username: {
       type: String,
       unique: true,
@@ -19,11 +23,7 @@ const userSchema = new Schema(
         'Please provide a valid email',
       ],
     },
-    password: {
-      type: String,
-      required: [true, 'Please enter a password'],
-      minlength: 8,
-    },
+    
     followers: [
       {
         type: Schema.Types.ObjectId,
@@ -60,16 +60,6 @@ const userSchema = new Schema(
   }
 )
 
-// Bcrypt encryption
-userSchema.pre('save', async function () {
-  const salt = await bcrypt.genSalt(10)
-  this.password = await bcrypt.hash(this.password, salt)
-})
-
-userSchema.methods.comparePassword = async function (canditatePassword) {
-  const isMatch = await bcrypt.compare(canditatePassword, this.password)
-  return isMatch
-}
 
 const User = model('user', userSchema)
 
