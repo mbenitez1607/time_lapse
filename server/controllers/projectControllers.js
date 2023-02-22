@@ -17,13 +17,13 @@ export const createProject = async (req, res, next) => {
       name: req.body.name,
       days: req.body.days,
       description: req.body.description,
-      user: '63ef0f84c72473760d654405',
+      user: req.userId,
     })
 
     await project.save()
 
     await User.findOneAndUpdate(
-      { _id: '63ef0f84c72473760d654405' },
+      { _id: req.userId },
       { $addToSet: { project: project._id } },
       { new: true }
     )
@@ -73,7 +73,7 @@ export const deleteProject = async (req, res) => {
 // get all projects for the user
 export const getAllProjects = async (req, res, next) => {
   try {
-    const filter = { user: '63ef0f84c72473760d654405' }
+    const filter = { user: req.userId }
     const allUserProjects = await Project.find(filter)
     return res.status(200).json({data:allUserProjects, status:200})
   } catch (error) {

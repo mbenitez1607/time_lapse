@@ -29,13 +29,14 @@ export const getUser = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const newUser = await User.create({
+      _id:req.body._id,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
     })
 
     res.status(200).json({ msg: 'user created', newUser })
   } catch (error) {
+    console.log(error)
     res.status(500).json({ msg: error })
   }
 }

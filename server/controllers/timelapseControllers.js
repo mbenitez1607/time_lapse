@@ -23,12 +23,13 @@ export const getAllTimelapses = async (req, res) => {
   }
 }
 
-export const getSingleTimelapse = async (req, res) => {
+export const getSingleTimelapse = async (req, res) => {.1
+
   try {
     const { id } = req.params
     const timelapseData = await Timelapse.findOne({ _id: id })
     if (!timelapseData) {
-      return res.status(404).json({ msg: `No user with id : ${id}` })
+      return res.status(404).json({ msg: `No timelape with that id : ${id}` })
     }
 
     res.status(200).json({ data: timelapseData })
@@ -70,7 +71,7 @@ export const createTimelapse = async (req, res) => {
 
     const timelapseFile = new Timelapse({
       name: project.name,
-      createdBy: "63ef0f84c72473760d654405",
+      createdBy: req.userId,
       description: project.description,
       project: req.params.id
     });
