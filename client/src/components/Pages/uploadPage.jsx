@@ -45,12 +45,14 @@ function UploadImage() {
       // the image field name should be similar to your api endpoint field name
       // in my case here the field name is customFile
 
+      const token = localStorage.getItem('@token')
+
       axios.post(
         `http://localhost:3001/api/files/singleFile/${id}`,
         formData,
         {
           headers: {
-            "Authorization": "",
+            Authorization: `Bearer ` + token,
             "Content-type": "multipart/form-data",
           },
         }
