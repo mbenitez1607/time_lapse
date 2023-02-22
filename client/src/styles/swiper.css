@@ -1,108 +1,111 @@
 .mySwiper {
-	width: 100%;
-	height: 400px;
+  width: 100%;
+  height: 400px;
 }
 
-#recommend.mySwiper{
-    height: 300px;
-    padding: 20px 5px;
+#recommend.mySwiper {
+  height: 300px;
+  padding: 20px 5px;
 }
 
 .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 220px;
-    height: 100%;
+  background-position: center;
+  background-size: cover;
+  width: 220px;
+  height: 100%;
 }
 
-.swiper-pagination{
-	margin-top: 20px;
+.swiper-pagination {
+  margin-top: 20px;
 }
 
-.myCard{
-    height: 400px;
-    display: grid;
-    grid-template-rows: 280px 40px 60px;
-    grid-template-areas: 'img' 'text' 'function';
-    border-radius: 8px;
-    text-align: center;
-    border: 1.5px solid rgba(1,203,136,0.8);
-    backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.1);
-    cursor: pointer;
- }
-
- #recommend .myCard{
-    height: 200px;
-    grid-template-rows: 200px 40px;
-    grid-template-areas: 'img' 'text';
- }
-
-.myCard:hover{
-    z-index: 1;
-    background-color: rgba(255, 214, 43, 0.15);
+.myCard {
+  height: 400px;
+  display: grid;
+  grid-template-rows: 280px 40px 60px;
+  grid-template-areas: 'img' 'text' 'function';
+  border-radius: 8px;
+  text-align: center;
+  border: 1.5px solid rgba(1, 203, 136, 0.8);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-#recommend .myCard:hover{
-    transition: 0.5s;
-    transform: scale(0.85);
+#recommend .myCard {
+  height: 200px;
+  grid-template-rows: 200px 40px;
+  grid-template-areas: 'img' 'text';
+}
+
+.myCard:hover {
+  z-index: 1;
+  background-color: rgba(255, 214, 43, 0.15);
+}
+
+#recommend .myCard:hover {
+  transition: 0.5s;
+  transform: scale(0.85);
 }
 
 .img {
-    grid-area: img;
-    position: relative;
-    border-radius:8px 8px 0 0;
-    overflow: hidden;
+  grid-area: img;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  height: 100%;
+  cursor: pointer;
 }
 
-#recommend .img{
-    border-radius: 8px;
+#recommend .img {
+  border-radius: 8px;
 }
 
-.img img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.text{
-    grid-area: text;
-    text-align: center;
-	margin-top: 12px;
-	font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    color:#01cb88;
+.text {
+  grid-area: text;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #01cb88;
 }
 
-#recommend .text{
-    margin: 8px 0;
+#recommend .text {
+  margin: 8px 0;
 }
 
 .function {
-    grid-area: function;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-top: 14px;
+  grid-area: function;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
 }
 
-.function div{
-    margin: 0 18px;
+.function div {
+  margin: 0 18px;
 }
 
-.function div:hover{
-    transition: 0.5s;
-    transform: scale(1.25);
+.function div:hover {
+  transition: 0.5s;
+  transform: scale(1.25);
 }
 
 #new {
-    background: url(../img/userProject/plus.png) no-repeat;
-    background-size: contain;
-    margin: 30%;
+  background: url(../img/userProject/plus.png) no-repeat;
+  background-size: contain;
+  margin: 30%;
 }
 
-
+.cursor {
+  cursor: pointer;
+}
