@@ -2,6 +2,7 @@ import { Schema, model, Types } from 'mongoose'
 
 const userSchema = new Schema(
   {
+    // ID generated from Firebase 🔥
     _id: {
       type: String,
       require: true,
@@ -23,7 +24,7 @@ const userSchema = new Schema(
         'Please provide a valid email',
       ],
     },
-    
+
     followers: [
       {
         type: Schema.Types.ObjectId,
@@ -59,7 +60,6 @@ const userSchema = new Schema(
     id: false,
   }
 )
-
 
 const User = model('user', userSchema)
 

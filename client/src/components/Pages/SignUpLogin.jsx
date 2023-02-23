@@ -112,10 +112,10 @@ const SignLogin = () => {
                     const id = auth?.currentUser?.uid
                     await createUser({ _id:id, email, username: userName })
                     // send out greeting email
-                    await sendGreeting({email: email})
+                    await sendGreeting({email: email}).then(() => {
+                        navigate('/home')
+                    })
                     
-                    navigate('/home');
-                    window.location.reload();
                 }
 
             }
@@ -123,6 +123,7 @@ const SignLogin = () => {
             alert(`SignUp error: ${error}}`);
         } finally {
             setIsLoading(false); 
+            window.location.reload()
         }
 
 
