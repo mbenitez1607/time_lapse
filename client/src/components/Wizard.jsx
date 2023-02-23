@@ -61,7 +61,7 @@ const Wizard = () => {
             </div>
 
             <div className="d-flex flex-column">
-              <label htmlFor='days'>How many <span>days?</span> </label>
+              <label htmlFor='days'>How many <span>days/pictures?</span> </label>
               <input
                 className="mb-3 myInput p-2"
                 type='number'

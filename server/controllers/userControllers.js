@@ -11,17 +11,17 @@ export const getAllUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
-    const { id } = req.params
-    const userData = await User.findOne({ _id: id }).populate(
-      'following followers'
-    )
+    
+    const userData = await User.findById({ _id: req.userId })
 
     if (!userData) {
-      return res.status(404).json({ msg: `No user with id : ${id}` })
+      console.log("user")
+      return res.status(404).json({ msg: `No user with id : ${req.userId}` })
     }
 
-    res.status(200).json({ data: userData })
+    res.status(200).json({ data: userData, status:200})
   } catch (error) {
+    console.log(error)
     res.status(500).json({ msg: error })
   }
 }

@@ -57,7 +57,7 @@ export const createTimelapse = async (req, res) => {
 
     //We instance the class Gif and give the proportions of width 500 and height 500
 
-    const myGif = new Gif(500, 500)
+    const myGif = new Gif(800, 800)
 
     await myGif.setFrames(generateBuffer)
 

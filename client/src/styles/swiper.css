@@ -28,7 +28,7 @@
   text-align: center;
   border: 1.5px solid rgba(1, 203, 136, 0.8);
   backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 #recommend .myCard {
