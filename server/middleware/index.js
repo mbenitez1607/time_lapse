@@ -8,7 +8,7 @@ const middleware = async (req, res, next) => {
         const decodeValue = await admin.auth().verifyIdToken(token)
         if (decodeValue) {
             const userId = decodeValue.uid
-            req.userId= userId  
+            req.userId = userId  
             return next();
         }
         return res.status(401).json({message: "Unauthorize", status:401})
