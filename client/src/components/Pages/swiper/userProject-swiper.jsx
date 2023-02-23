@@ -41,7 +41,7 @@ export default function UserProject() {
 
   useEffect(() => {
     loadAllProjects()
-  }, []);
+  }, [projects]);
 
 
   return (
@@ -89,7 +89,7 @@ export default function UserProject() {
                   <FontAwesomeIcon className='cursor' icon={faPenToSquare} color='#01cb88' size='2x'/>
                 </div>
 
-                <div onClick={() => {deleteSingleProject(`${project._id}`);window.location.reload();}}>
+                <div onClick={() => {deleteSingleProject(`${project._id}`)}}>
                   <FontAwesomeIcon className='cursor' icon={faTrashCan} color='#01cb88' size='2x'/>
                 </div>
             </div>
