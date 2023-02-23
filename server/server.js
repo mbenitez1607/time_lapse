@@ -33,6 +33,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))
+  //Added this to manage browser refresh on Heroku
+  app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 }
 
 // Basic reminder to be set at 3PM every day, once to all emails in DB
