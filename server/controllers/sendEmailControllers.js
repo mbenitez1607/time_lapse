@@ -1,9 +1,12 @@
 import { sendGreeting } from '../helpers/sendEmail.js'
 import User from '../models/User.js'
 
-import * as fs from 'fs'
-const greetingHTML = fs.readFileSync('./emailTemplates/template.html', 'utf-8')
-const reminderHTML = fs.readFileSync('./emailTemplates/reminder.html', 'utf-8')
+// import * as fs from 'fs'
+// const greetingHTML = fs.readFileSync('../emailTemplates/template.html', 'utf-8')
+// const reminderHTML = fs.readFileSync('./emailTemplates/reminder.html', 'utf-8')
+
+import { greetingHTML } from '../emailTemplates/template.js'
+import { reminderHTML } from '../emailTemplates/reminder.js'
 
 export const sendGreetingEmail = async (req, res) => {
   try {
@@ -31,8 +34,3 @@ export const sendReminderEmail = async (req, res) => {
     res.status(500).json({ msg: error })
   }
 }
-
-// credentials of new email account that was set up
-// put into an ENV file
-// test_789564@outlook.com
-// sXi59Vv72xQixqb
