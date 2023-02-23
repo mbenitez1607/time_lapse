@@ -10,31 +10,30 @@ import { useNavigate } from 'react-router-dom';
 function MemberHeader () {
     const [username, setUsername] = useState();
     const navigate = useNavigate();
-
+    
     const getLoggedInUsername = async () => {
         try {
-            const userName = await getUsername()
-            const { status } = userName
-            if (status == 401) {
-                localStorage.removeItem("@token")
-
-                navigate('/login')
-                return
-            }
-            if (status == 200) {
-
-                setUsername(userName.data.data.username)
-                
-            }
-            else {
-                alert("Ooops something went wrong!!")
-
-            }
-            console.log("This is userName", userName);
+          const userName = await getUsername();
+          const { status } = userName;
+      
+          switch (status) {
+            case 200:
+              setUsername(userName.data.data.username);
+              break;
+            case 401:
+              localStorage.removeItem("@token");
+              navigate("/login");
+              break;
+            default:
+              alert("Oops, something went wrong!");
+              break;
+          }
+      
+          console.log("This is userName", userName);
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-    };
+      };
 
     useEffect(() => {
         getLoggedInUsername();
