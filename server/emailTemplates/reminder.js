@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+export const reminderHTML = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -40,3 +40,4 @@
     <img src="cid:logo" alt="timelapse logo and banner" />
   </body>
 </html>
+`
